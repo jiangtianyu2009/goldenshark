@@ -19,13 +19,13 @@ def getdetail():
         client = ScrapinghubClient(apikey)
         project = client.get_project(252342)
 
-        for job in list(project.jobs.iter_last(spider='javcode', state='finished')):
+        for job in list(project.jobs.iter_last(spider='myspider', state='finished')):
             codejob = job
 
         print(codejob['key'])
         lastcodejob = project.jobs.get(codejob['key'])
 
         for item in lastcodejob.items.iter():
-            codelist.append(item['code'])
+            codelist.append(item)
         print(codelist)
         return jsonify(codelist)
