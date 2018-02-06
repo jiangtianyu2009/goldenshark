@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.6.4"
+os:
+  - linux
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+# command to run tests
+script:
+  - python checkfiles.py
+notifications:
+  slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv
