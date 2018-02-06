@@ -11,7 +11,9 @@ def hello():
     return "Hellrld!"
 
 
-@app.route('/thzdetails', methods=['GET'])
+@app.route('/thzdetails', methods=['GET', 'POST'])
 def getdetail():
     if request.method == 'GET':
         return 'Ha Ha Ha, Get Details.'
+    if request.method == 'POST':
+        return 'POSTPOSTPOST...'
