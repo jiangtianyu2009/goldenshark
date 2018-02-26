@@ -15,7 +15,7 @@ def hello():
 @app.route('/thzdetails', methods=['GET', 'POST'])
 def getdetail():
     if request.method == 'GET':
-        return 'Update. Ha Ha Ha, Get Details.'
+        return 'Test update. Update. Ha Ha Ha, Get Details.'
     if request.method == 'POST':
         return 'POSTPOSTPOST...'
 
