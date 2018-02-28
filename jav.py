@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import request
 from flask import jsonify
+from flask import send_from_directory
 from scrapinghub import ScrapinghubClient
 import subprocess
+import os
 
 app = Flask(__name__)
 
@@ -12,8 +14,10 @@ def hello():
     return "Test Test Test update. Hellrld!"
 
 
-app.add_url_rule('/favicon.ico',
-                 redirect_to=url_for('static', filename='favicon.ico'))
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/thzdetails', methods=['GET', 'POST'])
