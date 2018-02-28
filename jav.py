@@ -12,6 +12,10 @@ def hello():
     return "Test Test Test update. Hellrld!"
 
 
+app.add_url_rule('/favicon.ico',
+                 redirect_to=url_for('static', filename='favicon.ico'))
+
+
 @app.route('/thzdetails', methods=['GET', 'POST'])
 def getdetail():
     if request.method == 'GET':
