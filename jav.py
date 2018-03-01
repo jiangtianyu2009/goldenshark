@@ -39,6 +39,6 @@ def performupdatecode():
 @app.route('/codelist', methods=['POST'])
 def fetchcodelist():
     if request.method == 'POST':
-        output = subprocess.check_output(
+        subprocess.Popen(
             ['python', r'/home/GoldenShark/codelist.py'])
-        return output
+        return 'run fetch code list'

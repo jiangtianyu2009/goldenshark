@@ -17,6 +17,6 @@ for item in lastcodejob.items.iter():
 print(codelist)
 
 jsObj = json.dumps(codelist)
-fileObject = open('jsonFile.json', 'w')
+fileObject = open(r'/home/GoldenShark/jsonFile.json', 'w')
 fileObject.write(jsObj)
 fileObject.close()
