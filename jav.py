@@ -40,5 +40,5 @@ def performupdatecode():
 def fetchcodelist():
     if request.method == 'POST':
         subprocess.Popen(
-            ['python', r'/home/GoldenShark/codelist.py'])
+            ['.', r'/home/GoldenShark/venv/bin/activate', r'&&', 'python', r'/home/GoldenShark/codelist.py'])
         return 'run fetch code list'
