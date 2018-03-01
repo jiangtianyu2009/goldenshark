@@ -25,7 +25,7 @@ def getdetail():
     if request.method == 'GET':
         return 'Test update. Update. Ha Ha Ha, Get Details.'
     if request.method == 'POST':
-        return 'POSTPOSTPOST...'
+        return 'Test. POSTPOSTPOST...'
 
 
 @app.route('/updatecode', methods=['POST'])
