@@ -29,7 +29,7 @@ def getdetail():
 
 
 @app.route('/updatecode', methods=['POST'])
-def updatecode():
+def performupdatecode():
     if request.method == 'POST':
         output = subprocess.check_output(
             ['git', '-C', r'/home/GoldenShark', 'pull'])
@@ -39,18 +39,6 @@ def updatecode():
 @app.route('/codelist', methods=['POST'])
 def fetchcodelist():
     if request.method == 'POST':
-        codelist = []
-        apikey = '11befd9da9304fecb83dfa114d1926e9'
-        client = ScrapinghubClient(apikey)
-        project = client.get_project(252342)
-
-        for job in list(project.jobs.iter_last(spider='myspider', state='finished')):
-            codejob = job
-
-        print(codejob['key'])
-        lastcodejob = project.jobs.get(codejob['key'])
-
-        for item in lastcodejob.items.iter():
-            codelist.append(item)
-        print(codelist)
-        return jsonify(codelist)
+        output = subprocess.check_output(
+            ['python', r'/home/GoldenShark/codelist.py'])
+        return output
