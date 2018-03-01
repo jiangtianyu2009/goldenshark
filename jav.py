@@ -36,9 +36,9 @@ def updatecode():
         return output
 
 
-@app.route('/codelist', methods=['GET'])
+@app.route('/codelist', methods=['POST'])
 def fetchcodelist():
-    if request.method == 'GET':
+    if request.method == 'POST':
         codelist = []
         apikey = '11befd9da9304fecb83dfa114d1926e9'
         client = ScrapinghubClient(apikey)
