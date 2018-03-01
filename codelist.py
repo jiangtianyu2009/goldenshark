@@ -14,9 +14,10 @@ lastcodejob = project.jobs.get(codejob['key'])
 
 for item in lastcodejob.items.iter():
     codelist.append(item)
-print(codelist)
 
-jsObj = json.dumps(codelist)
-fileObject = open(r'/home/GoldenShark/jsonFile.json', 'w')
-fileObject.write(jsObj)
-fileObject.close()
+# print(codelist)
+
+codelistobj = json.dumps(codelist)
+codelistfile = open(r'/home/GoldenShark/codelist.json', 'w')
+codelistfile.write(codelistobj)
+codelistfile.close()
