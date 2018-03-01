@@ -5,6 +5,7 @@ from flask import send_from_directory
 from scrapinghub import ScrapinghubClient
 import subprocess
 import os
+import json
 
 app = Flask(__name__)
 
@@ -23,7 +24,9 @@ def favicon():
 @app.route('/thzdetails', methods=['GET', 'POST'])
 def getdetail():
     if request.method == 'GET':
-        return 'Test update. Update. Ha Ha Ha, Get Details.'
+        with open(r'/home/GoldenShark/codelist.json', 'r') as thzfile:
+            thzdict = json.load(thzfile)
+            return jsonify(thzdict)
     if request.method == 'POST':
         return 'Test. POSTPOSTPOST...'
 
