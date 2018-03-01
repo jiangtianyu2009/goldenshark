@@ -1,5 +1,5 @@
 from scrapinghub import ScrapinghubClient
-
+import json
 
 codelist = []
 apikey = '11befd9da9304fecb83dfa114d1926e9'
@@ -15,3 +15,8 @@ lastcodejob = project.jobs.get(codejob['key'])
 for item in lastcodejob.items.iter():
     codelist.append(item)
 print(codelist)
+
+jsObj = json.dumps(codelist)
+fileObject = open('jsonFile.json', 'w')
+fileObject.write(jsObj)
+fileObject.close()
