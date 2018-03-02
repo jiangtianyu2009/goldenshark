@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def hello():
-    return "Test Travis CI. Favicon in static folder is ok. Test Test Test update. Hellrld!"
+def index():
+    return app.send_static_file('index.html')
 
 
 @app.route('/favicon.ico')
