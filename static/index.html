@@ -1,4 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 <div id="app">
@@ -66,13 +67,24 @@
 
 <div id="app-6">
     <p>{{ message }}</p>
-    <input v-model="message">
+    <button v-on:click="getMessage">get</button>
 </div>
 <script>
     var app6 = new Vue({
         el: '#app-6',
         data: {
-            message: 'Hello Vue!'
+            message: 'Get Vue.js!'
+        },
+        methods: {
+            getMessage: function () {
+                axios.get('/thzdetails')
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     })
 </script>
