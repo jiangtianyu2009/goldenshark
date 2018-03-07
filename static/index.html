@@ -81,6 +81,7 @@
                 axios.get('/thzdetails')
                     .then(function (response) {
                         console.log(response);
+                        this.message = response.data;
                     })
                     .catch(function (error) {
                         console.log(error);
