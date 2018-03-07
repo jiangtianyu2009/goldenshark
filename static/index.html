@@ -78,11 +78,11 @@
         },
         methods: {
             getMessage: function () {
-                this.message = axios.get('http://jsonplaceholder.typicode.com/todos')
+                axios.get('http://jsonplaceholder.typicode.com/todos')
                     .then(function (response) {
                         console.log(response);
-                        return response.data;
-                    })
+                        this.message = response.data;
+                    }.bind(this))
                     .catch(function (error) {
                         console.log(error);
                     });
