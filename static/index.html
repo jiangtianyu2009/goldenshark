@@ -78,10 +78,9 @@
         },
         methods: {
             getMessage: function () {
-                axios.get('/thzdetails')
+                axios.get('http://jsonplaceholder.typicode.com/todos')
                     .then(function (response) {
                         console.log(response);
-                        this.message = this.message.split('').reverse().join('');
                     })
                     .catch(function (error) {
                         console.log(error);
