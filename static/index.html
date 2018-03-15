@@ -90,11 +90,11 @@
             <th>title</th>
             <th>completed</th>
         </tr>
-        <tr v-for="user in users ">
-            <td>{{message.userId}}</td>
-            <td>{{message.id}}</td>
-            <td>{{message.title}}</td>
-            <td>{{message.completed}}</td>
+        <tr v-for="user in message">
+            <td>{{user.userId}}</td>
+            <td>{{user.id}}</td>
+            <td>{{user.title}}</td>
+            <td>{{user.completed}}</td>
         </tr>
     </table>
 </div>
