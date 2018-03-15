@@ -15,7 +15,7 @@
 </head>
 
 <div id="headimg">
-    <img src="/static/Shark.png" alt="your-image">
+    <img src="/static/Shark.png" alt="logo-image">
 </div>
 
 <div id="app">
@@ -83,17 +83,32 @@
 </script>
 
 <div id="app-6">
-    <p>{{ message }}</p>
-    <button v-on:click="getMessage">get</button>
+    <table>
+        <tr>
+            <th>userId</th>
+            <th>id</th>
+            <th>title</th>
+            <th>completed</th>
+        </tr>
+        <tr v-for="user in users ">
+            <td>{{message.userId}}</td>
+            <td>{{message.id}}</td>
+            <td>{{message.title}}</td>
+            <td>{{message.completed}}</td>
+        </tr>
+    </table>
 </div>
 <script>
     var app6 = new Vue({
         el: '#app-6',
         data: {
-            message: 'Get Vue.js!'
+            message: ''
+        },
+        mounted: function () {
+            this.getJsonInfo()
         },
         methods: {
-            getMessage: function () {
+            getJsonInfo: function () {
                 axios.get('http://jsonplaceholder.typicode.com/todos')
                     .then(function (response) {
                         console.log(response);
