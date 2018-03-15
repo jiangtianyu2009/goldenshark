@@ -85,16 +85,14 @@
 <div id="app-6">
     <table>
         <tr>
-            <th>userId</th>
-            <th>id</th>
-            <th>title</th>
-            <th>completed</th>
+            <th>code</th>
+            <th>name</th>
+            <th>text</th>
         </tr>
         <tr v-for="user in message">
-            <td>{{user.userId}}</td>
-            <td>{{user.id}}</td>
-            <td>{{user.title}}</td>
-            <td>{{user.completed}}</td>
+            <td>{{user.code}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.text}}</td>
         </tr>
     </table>
 </div>
@@ -109,7 +107,7 @@
         },
         methods: {
             getJsonInfo: function () {
-                axios.get('http://jsonplaceholder.typicode.com/todos')
+                axios.get('http://www.goldenshark.cf/thzdetails')
                     .then(function (response) {
                         console.log(response);
                         this.message = response.data;
