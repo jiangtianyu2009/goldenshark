@@ -2,6 +2,7 @@
     <title>Golden Shark</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
 </head>
 
 <div id="headimg">
@@ -22,13 +23,14 @@
             <span>{{thz.imgf}}</span>
             <br>
             <span>
-                <img v-bind:src="thz.imgf">
+                <img v-lazy="thz.imgf">
             </span>
             <br>
         </li>
     </ol>
 </div>
 <script>
+    Vue.use(VueLazyload)
     var thzapp = new Vue({
         el: '#thzapp',
         data: {
