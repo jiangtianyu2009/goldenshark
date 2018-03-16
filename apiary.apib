@@ -1,80 +1,33 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://www.goldenshark.cf/
 
 # GoldenShark
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Thz Spider API.
 
-## Questions Collection [/questions]
+## Thz Details [/thzdetails]
 
-### List All Questions [GET]
+### List All Thz Details [GET]
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+                "_type": "dict",
+                "code": "HNDS-055",
+                "href": "http://vipthz.com/thread-1785014-1-1.html",
+                "imgf": "http://pic.thzhd.wang/forum/201803/13/183818qgjzlejtvgjot20g.jpg",
+                "name": "椎名そら",
+                "text": "[hnds-055]全員に告白されたから子作り"
             }
         ]
 
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Test POST [POST]
 
 + Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+        null
 
 + Response 201 (application/json)
 
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+        Test. POSTPOSTPOST...
