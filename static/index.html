@@ -39,7 +39,6 @@
             getJsonInfo: function () {
                 axios.get('http://www.goldenshark.cf/thzdetails')
                     .then(function (response) {
-                        console.log(response);
                         this.message = response.data;
                     }.bind(this))
                     .catch(function (error) {
