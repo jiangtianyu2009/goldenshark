@@ -83,18 +83,13 @@
 </script>
 
 <div id="app-6">
-    <table>
-        <tr>
-            <th>code</th>
-            <th>name</th>
-            <th>text</th>
-        </tr>
-        <tr v-for="user in message">
-            <td>{{user.code}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.text}}</td>
-        </tr>
-    </table>
+    <ol>
+        <li v-for="user in message">
+            <span>{{user.code}}</span>
+            <span>{{user.name}}</span>
+            <span>{{user.text}}</span>
+        </li>
+    </ol>
 </div>
 <script>
     var app6 = new Vue({
