@@ -35,7 +35,7 @@ def getdetail():
 def performupdatecode():
     if request.method == 'POST':
         output = subprocess.check_output(
-            ['git', '-C', r'/home/GoldenShark', 'pull'])
+            ['git', '-C', r'/home/GoldenShark', 'pull', '-v'])
         return output
 
 
