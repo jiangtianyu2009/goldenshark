@@ -38,14 +38,11 @@
         },
         methods: {
             getJsonInfo: function () {
-                axios.get('http://www.goldenshark.cf/thzdetails')
-                    .then(function (response) {
+                $.getJSON('http://www.goldenshark.cf/thzdetails',
+                    function (response) {
                         console.log(response);
                         this.message = response.data;
-                    }.bind(this))
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                    }.bind(this));
             }
         }
     })
