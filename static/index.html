@@ -55,7 +55,7 @@
                 <v-card>
                     <v-container fluid grid-list-md>
                         <v-layout row wrap>
-                            <v-flex v-bind="{ [`xs12`]: true }" v-for="card in cards" :key="card.title">
+                            <v-flex xs12 v-for="card in cards" :key="card.title">
                                 <v-card>
                                     <v-card-media :src="card.src">
                                         <v-container fill-height fluid>
@@ -106,7 +106,7 @@
                 <v-card>
                     <v-container fluid grid-list-md>
                         <v-layout row wrap>
-                            <v-flex v-bind="{ [`xs${card.flex}`]: true }" v-for="thz in message" :key="thz.code">
+                            <v-flex xs12 v-for="thz in message" :key="thz.code">
                                 <v-card>
                                     <v-card-media :src="thz.imgf">
                                         <v-container fill-height fluid>
