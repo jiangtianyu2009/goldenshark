@@ -9,7 +9,6 @@ install:
 # command to run tests
 script:
   - curl http://www.goldenshark.cf/
-  - curl http://www.goldenshark.cf/thzdetails
   - curl http://www.goldenshark.cf/codelist
 notifications:
   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv
