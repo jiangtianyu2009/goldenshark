@@ -13,84 +13,6 @@
     <img src="/static/Shark.png" alt="logo-image">
 </div>
 
-<div id="thzcard">
-    <v-app id="inspire">
-        <v-layout>
-            <v-flex xs12 sm6>
-                <v-card>
-                    <v-card-media src="https://vuetifyjs.com/static/doc-images/cards/desert.jpg" height="200px">
-                    </v-card-media>
-                    <v-card-title primary-title>
-                        <div>
-                            <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                            <div>Located two hours south of Sydney in the
-                                <br>Southern Highlands of New South Wales, ...</div>
-                        </div>
-                    </v-card-title>
-                    <v-card-actions>
-                        <v-btn flat color="orange">Share</v-btn>
-                        <v-btn flat color="orange">Explore</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
-        </v-layout>
-    </v-app>
-</div>
-<script>
-    new Vue({
-        el: '#thzcard',
-        data() {
-            return {
-                card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
-            }
-        }
-    })
-</script>
-
-
-<div id="thzcardslist">
-    <v-app id="inspire">
-        <v-layout align-center>
-            <v-flex xs12 sm8 offset-xs1>
-                <v-card>
-                    <v-container fluid grid-list-md>
-                        <v-layout row wrap>
-                            <v-flex xs12 v-for="card in cards" :key="card.title">
-                                <v-card>
-                                    <img src="https://vuetifyjs.com/static/doc-images/cards/desert.jpg" alt="logo-image">
-                                    <v-card-title primary-title>
-                                        <div>
-                                            <h3 class="headline mb-0" v-text="card.title"></h3>
-                                        </div>
-                                    </v-card-title>
-                                    <v-card-actions>
-                                        <v-btn flat color="info" v-text="card.title"></v-btn>
-                                        <v-spacer></v-spacer>
-                                        <v-btn color="success" v-text="card.title"></v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
-                </v-card>
-            </v-flex>
-        </v-layout>
-    </v-app>
-</div>
-<script>
-    new Vue({
-        el: '#thzcardslist',
-        data: () => ({
-            cards: [
-                { title: 'Pre-fab homes', src: 'https://vuetifyjs.com/static/doc-images/cards/house.jpg', flex: 12 },
-                { title: 'Favorite road trips', src: 'https://vuetifyjs.com/static/doc-images/cards/road.jpg', flex: 12 },
-                { title: 'Best airlines', src: 'https://vuetifyjs.com/static/doc-images/cards/plane.jpg', flex: 12 }
-            ]
-        })
-    })
-</script>
-
-
 <div id="thzapp">
     <v-app id="inspire">
         <v-layout align-center>
@@ -121,9 +43,6 @@
             </v-flex>
         </v-layout>
     </v-app>
-
-
-
 </div>
 <script>
     Vue.use(VueLazyload)
