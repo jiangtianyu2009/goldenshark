@@ -55,9 +55,9 @@
                 <v-card>
                     <v-container fluid grid-list-md>
                         <v-layout row wrap>
-                            <v-flex v-bind="{ [`xs${card.flex}`]: true }" v-for="card in cards" :key="card.title">
+                            <v-flex v-bind="{ [`xs12`]: true }" v-for="card in cards" :key="card.title">
                                 <v-card>
-                                    <v-card-media :src="card.src" height="200px">
+                                    <v-card-media :src="card.src">
                                         <v-container fill-height fluid>
                                             <v-layout fill-height>
                                                 <v-flex xs12 align-end flexbox>
@@ -66,17 +66,15 @@
                                             </v-layout>
                                         </v-container>
                                     </v-card-media>
+                                    <v-card-title primary-title>
+                                        <div>
+                                            <h3 class="headline mb-0" v-text="card.title"></h3>
+                                        </div>
+                                    </v-card-title>
                                     <v-card-actions>
+                                        <v-btn flat color="info" v-text="card.title"></v-btn>
                                         <v-spacer></v-spacer>
-                                        <v-btn icon>
-                                            <v-icon>favorite</v-icon>
-                                        </v-btn>
-                                        <v-btn icon>
-                                            <v-icon>bookmark</v-icon>
-                                        </v-btn>
-                                        <v-btn icon>
-                                            <v-icon>share</v-icon>
-                                        </v-btn>
+                                        <v-btn color="success" v-text="card.title"></v-btn>
                                     </v-card-actions>
                                 </v-card>
                             </v-flex>
@@ -93,8 +91,8 @@
         data: () => ({
             cards: [
                 { title: 'Pre-fab homes', src: 'https://vuetifyjs.com/static/doc-images/cards/house.jpg', flex: 12 },
-                { title: 'Favorite road trips', src: 'https://vuetifyjs.com/static/doc-images/cards/road.jpg', flex: 6 },
-                { title: 'Best airlines', src: 'https://vuetifyjs.com/static/doc-images/cards/plane.jpg', flex: 6 }
+                { title: 'Favorite road trips', src: 'https://vuetifyjs.com/static/doc-images/cards/road.jpg', flex: 12 },
+                { title: 'Best airlines', src: 'https://vuetifyjs.com/static/doc-images/cards/plane.jpg', flex: 12 }
             ]
         })
     })
@@ -102,24 +100,44 @@
 
 
 <div id="thzapp">
-    <ol>
-        <li v-for="thz in message">
-            <span>{{thz.code}}</span>
-            <br>
-            <span>{{thz.name}}</span>
-            <br>
-            <span>{{thz.text}}</span>
-            <br>
-            <span>{{thz.href}}</span>
-            <br>
-            <span>{{thz.imgf}}</span>
-            <br>
-            <span>
-                <img v-lazy="thz.imgf">
-            </span>
-            <br>
-        </li>
-    </ol>
+    <v-app id="inspire">
+        <v-layout align-center>
+            <v-flex xs12 sm8 offset-xs1>
+                <v-card>
+                    <v-container fluid grid-list-md>
+                        <v-layout row wrap>
+                            <v-flex v-bind="{ [`xs${card.flex}`]: true }" v-for="thz in message" :key="thz.code">
+                                <v-card>
+                                    <v-card-media :src="thz.imgf">
+                                        <v-container fill-height fluid>
+                                            <v-layout fill-height>
+                                                <v-flex xs12 align-end flexbox>
+                                                    <span class="headline white--text" v-text="thz.code" />
+                                                </v-flex>
+                                            </v-layout>
+                                        </v-container>
+                                    </v-card-media>
+                                    <v-card-title primary-title>
+                                        <div>
+                                            <h3 class="headline mb-0" v-text="thz.text"></h3>
+                                        </div>
+                                    </v-card-title>
+                                    <v-card-actions>
+                                        <v-btn flat color="info" v-text="thz.name"></v-btn>
+                                        <v-spacer></v-spacer>
+                                        <v-btn color="success">Download</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-app>
+
+
+
 </div>
 <script>
     Vue.use(VueLazyload)
