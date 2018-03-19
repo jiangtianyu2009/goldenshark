@@ -14,24 +14,27 @@
 </div>
 
 <div id="thzcard">
-    <v-layout>
-        <v-flex xs12 sm6 offset-sm3>
-            <v-card>
-                <v-card-media src="/static/Shark.png" height="200px">
-                </v-card-media>
-                <v-card-title primary-title>
-                    <div>
-                        <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                        <div>Located two hours south of Sydney in </div>
-                    </div>
-                </v-card-title>
-                <v-card-actions>
-                    <v-btn flat color="orange">Share</v-btn>
-                    <v-btn flat color="orange">Explore</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-flex>
-    </v-layout>
+    <v-app id="inspire">
+        <v-layout>
+            <v-flex xs12 sm6 offset-sm3>
+                <v-card>
+                    <v-card-media src="https://vuetifyjs.com/static/doc-images/cards/desert.jpg" height="200px">
+                    </v-card-media>
+                    <v-card-title primary-title>
+                        <div>
+                            <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                            <div>Located two hours south of Sydney in the
+                                <br>Southern Highlands of New South Wales, ...</div>
+                        </div>
+                    </v-card-title>
+                    <v-card-actions>
+                        <v-btn flat color="orange">Share</v-btn>
+                        <v-btn flat color="orange">Explore</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-app>
 </div>
 <script>
     new Vue({
@@ -43,6 +46,60 @@
         }
     })
 </script>
+
+
+<div id="thzcardslist">
+    <v-app id="inspire">
+        <v-layout column>
+            <v-flex>
+                <v-card>
+                    <v-container fluid grid-list-md>
+                        <v-layout row wrap>
+                            <v-flex v-bind="{ [`xs${card.flex}`]: true }" v-for="card in cards" :key="card.title">
+                                <v-card>
+                                    <v-card-media :src="card.src" height="200px">
+                                        <v-container fill-height fluid>
+                                            <v-layout fill-height>
+                                                <v-flex xs12 align-end flexbox>
+                                                    <span class="headline white--text" v-text="card.title" />
+                                                </v-flex>
+                                            </v-layout>
+                                        </v-container>
+                                    </v-card-media>
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn icon>
+                                            <v-icon>favorite</v-icon>
+                                        </v-btn>
+                                        <v-btn icon>
+                                            <v-icon>bookmark</v-icon>
+                                        </v-btn>
+                                        <v-btn icon>
+                                            <v-icon>share</v-icon>
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-app>
+</div>
+<script>
+    new Vue({
+        el: '#thzcardslist',
+        data: () => ({
+            cards: [
+                { title: 'Pre-fab homes', src: 'https://vuetifyjs.com/static/doc-images/cards/house.jpg', flex: 12 },
+                { title: 'Favorite road trips', src: 'https://vuetifyjs.com/static/doc-images/cards/road.jpg', flex: 6 },
+                { title: 'Best airlines', src: 'https://vuetifyjs.com/static/doc-images/cards/plane.jpg', flex: 6 }
+            ]
+        })
+    })
+</script>
+
 
 <div id="thzapp">
     <ol>
