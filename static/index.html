@@ -1,13 +1,39 @@
 <head>
     <title>Golden Shark</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
 <div id="headimg">
     <img src="/static/Shark.png" alt="logo-image">
 </div>
+
+<div id="thzcard">
+    <v-layout>
+        <v-flex xs12 sm6 offset-sm3>
+            <v-card>
+                <v-card-media src="/static/Shark.png" height="200px">
+                </v-card-media>
+                <v-card-title primary-title>
+                    <div>
+                        <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                        <div>Located two hours south of Sydney in </div>
+                    </div>
+                </v-card-title>
+                <v-card-actions>
+                    <v-btn flat color="orange">Share</v-btn>
+                    <v-btn flat color="orange">Explore</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-flex>
+    </v-layout>
+</div>
+
 
 <div id="thzapp">
     <ol>
