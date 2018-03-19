@@ -57,15 +57,7 @@
                         <v-layout row wrap>
                             <v-flex xs12 v-for="card in cards" :key="card.title">
                                 <v-card>
-                                    <v-card-media :src="card.src">
-                                        <v-container fill-height fluid>
-                                            <v-layout fill-height>
-                                                <v-flex xs12 align-end flexbox>
-                                                    <span class="headline white--text" v-text="card.title" />
-                                                </v-flex>
-                                            </v-layout>
-                                        </v-container>
-                                    </v-card-media>
+                                    <img src="https://vuetifyjs.com/static/doc-images/cards/desert.jpg" alt="logo-image">
                                     <v-card-title primary-title>
                                         <div>
                                             <h3 class="headline mb-0" v-text="card.title"></h3>
@@ -108,17 +100,11 @@
                         <v-layout row wrap>
                             <v-flex xs12 v-for="thz in message" :key="thz.code">
                                 <v-card>
-                                    <v-card-media :src="thz.imgf">
-                                        <v-container fill-height fluid>
-                                            <v-layout fill-height>
-                                                <v-flex xs12 align-end flexbox>
-                                                    <span class="headline white--text" v-text="thz.code" />
-                                                </v-flex>
-                                            </v-layout>
-                                        </v-container>
-                                    </v-card-media>
+                                    <img v-lazy="thz.imgf">
                                     <v-card-title primary-title>
                                         <div>
+                                            <h3 class="headline mb-0" v-text="thz.code"></h3>
+                                            <br>
                                             <h3 class="headline mb-0" v-text="thz.text"></h3>
                                         </div>
                                     </v-card-title>
