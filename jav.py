@@ -21,14 +21,12 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
-@app.route('/thzdetails', methods=['GET', 'POST'])
+@app.route('/thzdetails', methods=['GET'])
 def getdetail():
     if request.method == 'GET':
         with open(r'/home/GoldenShark/codelist.json', 'r') as thzfile:
             thzdict = json.load(thzfile)
             return jsonify(thzdict)
-    if request.method == 'POST':
-        return 'Test. POSTPOSTPOST...'
 
 
 @app.route('/updatecode', methods=['POST'])
@@ -39,8 +37,8 @@ def performupdatecode():
         return output
 
 
-@app.route('/codelist', methods=['POST'])
+@app.route('/codelist', methods=['GET'])
 def fetchcodelist():
-    if request.method == 'POST':
+    if request.method == 'GET':
         subprocess.Popen(['python3', r'/home/GoldenShark/codelist.py'])
         return 'update run fetch code list'
