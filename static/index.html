@@ -11,43 +11,42 @@
 
 <div id="thzapp">
     <v-app id="inspire">
+
         <v-toolbar height=128>
             <v-toolbar-items>
                 <img src="/static/Shark.png" alt="logo-image">
             </v-toolbar-items>
         </v-toolbar>
 
-        <div>
-            <v-spacer></v-spacer>
-        </div>
-
-        <v-layout align-center>
-            <v-flex xs12 sm8 offset-xs1>
-                <v-card>
-                    <v-container fluid grid-list-md>
-                        <v-layout row wrap>
-                            <v-flex xs12 v-for="thz in message" :key="thz.code">
-                                <v-card>
-                                    <img v-lazy="thz.imgf" width="100%">
-                                    <v-card-title primary-title>
-                                        <div>
-                                            <h3 class="headline mb-0" v-text="thz.code"></h3>
-                                            <br>
-                                            <h3 class="headline mb-0" v-text="thz.text"></h3>
-                                        </div>
-                                    </v-card-title>
-                                    <v-card-actions>
-                                        <v-btn flat color="info" v-text="thz.name"></v-btn>
-                                        <v-spacer></v-spacer>
-                                        <v-btn color="success">Download</v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
-                </v-card>
-            </v-flex>
-        </v-layout>
+        <v-container fluid grid-list-xl>
+            <v-layout align-center>
+                <v-flex xs12 sm8 offset-xs1>
+                    <v-card>
+                        <v-container fluid grid-list-md>
+                            <v-layout row wrap>
+                                <v-flex xs12 v-for="thz in message" :key="thz.code">
+                                    <v-card>
+                                        <img v-lazy="thz.imgf" width="100%">
+                                        <v-card-title primary-title>
+                                            <div>
+                                                <h3 class="headline mb-0" v-text="thz.code"></h3>
+                                                <br>
+                                                <h3 class="headline mb-0" v-text="thz.text"></h3>
+                                            </div>
+                                        </v-card-title>
+                                        <v-card-actions>
+                                            <v-btn flat color="info" v-text="thz.name"></v-btn>
+                                            <v-spacer></v-spacer>
+                                            <v-btn color="success">Download</v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
 
         <div class="text-xs-center">
             <v-pagination :length="70" v-model="page" :total-visible="10"></v-pagination>
@@ -57,6 +56,7 @@
             <v-spacer></v-spacer>
             <div>&copy; {{ new Date().getFullYear() }}</div>
         </v-footer>
+
     </v-app>
 </div>
 <script>
