@@ -15,7 +15,7 @@
 
 <div id="thzapp">
     <v-app id="inspire">
-        <v-toolbar>
+        <v-toolbar height=128>
             <v-toolbar-items>
                 <img src="/static/Shark.png" alt="logo-image">
             </v-toolbar-items>
@@ -51,6 +51,11 @@
         <div class="text-xs-center">
             <v-pagination :length="70" v-model="page" :total-visible="10"></v-pagination>
         </div>
+
+        <v-footer class="pa-3">
+            <v-spacer></v-spacer>
+            <div>&copy; {{ new Date().getFullYear() }}</div>
+        </v-footer>
     </v-app>
 </div>
 <script>
