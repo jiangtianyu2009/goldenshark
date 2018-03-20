@@ -29,6 +29,12 @@ def getdetail(page_id):
             return jsonify(thzdict)
 
 
+@app.route('/totalpages', methods=['GET'])
+def gettotalpages():
+    if request.method == 'GET':
+        return len(os.listdir(r'/home/GoldenShark/codelist/'))
+
+
 @app.route('/updatecode', methods=['POST'])
 def performupdatecode():
     if request.method == 'POST':
