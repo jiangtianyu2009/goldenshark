@@ -56,7 +56,14 @@
         },
         methods: {
             getJsonInfo: function () {
-            }.bind(this)
+                axios.get('http://www.goldenshark.cf/thzdetails/1/')
+                    .then(function (response) {
+                        this.message = response.data;
+                    }.bind(this))
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     })
 </script>
