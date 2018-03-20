@@ -49,7 +49,7 @@
         </v-container>
 
         <div class="text-xs-center">
-            <v-pagination :length="70" v-model="page" :total-visible="10"></v-pagination>
+            <v-pagination :length="pages" v-model="page" :total-visible="10"></v-pagination>
         </div>
 
         <v-footer class="pa-3">
@@ -65,7 +65,8 @@
         el: '#thzapp',
         data: {
             message: '',
-            page: 1
+            page: 1,
+            pages: 75
         },
         mounted: function () {
             this.getJsonInfo()
