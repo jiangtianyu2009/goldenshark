@@ -21,10 +21,10 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
-@app.route('/thzdetails', methods=['GET'])
-def getdetail():
+@app.route('/thzdetails/<int:page_id>', methods=['GET'])
+def getdetail(page_id):
     if request.method == 'GET':
-        with open(r'/home/GoldenShark/codelist.json', 'r') as thzfile:
+        with open(r'/home/GoldenShark/codelist/' + str(page_id + 100) + r'.json', 'r') as thzfile:
             thzdict = json.load(thzfile)
             return jsonify(thzdict)
 
