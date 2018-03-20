@@ -94,9 +94,10 @@
                     });
             },
             next(page) {
-                axios.get('http://www.goldenshark.cf/thzdetails/' + str(page))
+                axios.get('http://www.goldenshark.cf/thzdetails/' + page)
                     .then(function (response) {
                         this.message = response.data;
+                        console.log('Current page is ' + page);
                     }.bind(this))
                     .catch(function (error) {
                         console.log(error);
