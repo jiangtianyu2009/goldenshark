@@ -49,7 +49,7 @@
         </v-container>
 
         <div class="text-xs-center">
-            <v-pagination :length="pages" v-model="page" :total-visible="10"></v-pagination>
+            <v-pagination :length="pages" v-model="page" @input="next" :total-visible="10"></v-pagination>
         </div>
 
         <v-footer class="pa-3">
@@ -75,11 +75,10 @@
             this.getTotalPages()
         },
         methods: {
-            getJsonInfo: function (page) {
+            getJsonInfo: function () {
                 axios.get('http://www.goldenshark.cf/thzdetails/1')
                     .then(function (response) {
                         this.message = response.data;
-                        console.log(page);
                     }.bind(this))
                     .catch(function (error) {
                         console.log(error);
@@ -89,6 +88,15 @@
                 axios.get('http://www.goldenshark.cf/totalpages')
                     .then(function (response) {
                         this.pages = parseInt(response.data);
+                    }.bind(this))
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            next(page) {
+                axios.get('http://www.goldenshark.cf/thzdetails/' + str(page))
+                    .then(function (response) {
+                        this.message = response.data;
                     }.bind(this))
                     .catch(function (error) {
                         console.log(error);
