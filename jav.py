@@ -32,7 +32,7 @@ def getdetail(page_id):
 @app.route('/totalpages', methods=['GET'])
 def gettotalpages():
     if request.method == 'GET':
-        return len(os.listdir(r'/home/GoldenShark/codelist/'))
+        return str(len(os.listdir(r'/home/GoldenShark/codelist/')))
 
 
 @app.route('/updatecode', methods=['POST'])
