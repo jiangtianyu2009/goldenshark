@@ -66,16 +66,28 @@
         data: {
             message: '',
             page: 1,
-            pages: 75
+            pages: 0
         },
         mounted: function () {
             this.getJsonInfo()
+        },
+        mounted: function () {
+            this.getTotalPages()
         },
         methods: {
             getJsonInfo: function () {
                 axios.get('http://www.goldenshark.cf/thzdetails/1')
                     .then(function (response) {
                         this.message = response.data;
+                    }.bind(this))
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            getTotalPages: function () {
+                axios.get('http://www.goldenshark.cf/totalpages')
+                    .then(function (response) {
+                        this.pages = parseInt(response.data);
                     }.bind(this))
                     .catch(function (error) {
                         console.log(error);
