@@ -15,6 +15,11 @@
 
 <div id="thzapp">
     <v-app id="inspire">
+        <v-toolbar>
+            <v-toolbar-items>
+                <img src="/static/Shark.png" alt="logo-image">
+            </v-toolbar-items>
+        </v-toolbar>
         <v-layout align-center>
             <v-flex xs12 sm8 offset-xs1>
                 <v-card>
@@ -42,6 +47,10 @@
                 </v-card>
             </v-flex>
         </v-layout>
+
+        <div class="text-xs-center">
+            <v-pagination :length="70" v-model="page" :total-visible="10"></v-pagination>
+        </div>
     </v-app>
 </div>
 <script>
@@ -49,7 +58,8 @@
     var thzapp = new Vue({
         el: '#thzapp',
         data: {
-            message: ''
+            message: '',
+            page: 1
         },
         mounted: function () {
             this.getJsonInfo()
