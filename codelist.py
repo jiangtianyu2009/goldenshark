@@ -31,7 +31,7 @@ for item in lastcodejob.items.iter():
         pagecounter = pagecounter + 1
 
 codelistobj = json.dumps(codelist)
-codelistfile = open(r'/home/GoldenShark/codelist' +
+codelistfile = open(r'/home/GoldenShark/codelist/' +
                     str(pagecounter) + r'.json', 'w')
 codelistfile.write(codelistobj)
 codelistfile.close()
