@@ -75,10 +75,11 @@
             this.getTotalPages()
         },
         methods: {
-            getJsonInfo: function () {
+            getJsonInfo: function (page) {
                 axios.get('http://www.goldenshark.cf/thzdetails/1')
                     .then(function (response) {
                         this.message = response.data;
+                        console.log(page);
                     }.bind(this))
                     .catch(function (error) {
                         console.log(error);
