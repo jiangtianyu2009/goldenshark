@@ -56,7 +56,7 @@
         },
         methods: {
             getJsonInfo: function () {
-                axios.get('http://www.goldenshark.cf/thzdetails')
+                axios.get('http://www.goldenshark.cf/thzdetails/1/')
                     .then(function (response) {
                         this.message = response.data;
                     }.bind(this))
