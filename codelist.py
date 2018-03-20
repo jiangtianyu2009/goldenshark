@@ -13,7 +13,7 @@ print(codejob['key'])
 lastcodejob = project.jobs.get(codejob['key'])
 
 codecounter = 0
-pagesection = 50
+pagesection = 20
 pagecounter = 101
 
 for item in lastcodejob.items.iter():
