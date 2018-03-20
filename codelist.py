@@ -12,16 +12,26 @@ for job in list(project.jobs.iter_last(spider='myspider', state='finished')):
 print(codejob['key'])
 lastcodejob = project.jobs.get(codejob['key'])
 
-number = 0
+codecounter = 0
+pagesection = 50
+pagecounter = 101
 
 for item in lastcodejob.items.iter():
-    if number < 50:
+    if codecounter < pagesection:
         codelist.append(item)
-        number = number + 1
+        codecounter = codecounter + 1
     else:
-        break
+        codelistobj = json.dumps(codelist)
+        codelistfile = open(r'/home/GoldenShark/codelist/' +
+                            str(pagecounter) + r'.json', 'w')
+        codelistfile.write(codelistobj)
+        codelistfile.close()
+        codelist.clear()
+        codecounter = 0
+        pagecounter = pagecounter + 1
 
 codelistobj = json.dumps(codelist)
-codelistfile = open(r'/home/GoldenShark/codelist.json', 'w')
+codelistfile = open(r'/home/GoldenShark/codelist' +
+                    str(pagecounter) + r'.json', 'w')
 codelistfile.write(codelistobj)
 codelistfile.close()
