@@ -12,8 +12,14 @@ for job in list(project.jobs.iter_last(spider='myspider', state='finished')):
 print(codejob['key'])
 lastcodejob = project.jobs.get(codejob['key'])
 
+number = 0
+
 for item in lastcodejob.items.iter():
-    codelist.append(item)
+    if number < 50:
+        codelist.append(item)
+        number = number + 1
+    else:
+        break
 
 codelistobj = json.dumps(codelist)
 codelistfile = open(r'/home/GoldenShark/codelist.json', 'w')
