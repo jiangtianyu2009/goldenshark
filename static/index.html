@@ -50,7 +50,7 @@
         </v-container>
 
         <div class="text-xs-center">
-            <v-pagination :length="pages" v-model="page" @input="next" :total-visible="10"></v-pagination>
+            <v-pagination :length="pages" v-model="page" @click="$vuetify.goTo(target, options)" @input="next" :total-visible="10"></v-pagination>
         </div>
 
         <v-footer class="pa-3">
@@ -74,6 +74,18 @@
         },
         created: function () {
             this.getTotalPages()
+        },
+        computed: {
+            target() {
+                return 0
+            },
+            options() {
+                return {
+                    duration: 1000,
+                    offset: 0,
+                    easing: 'easeInOutCubic'
+                }
+            }
         },
         methods: {
             getJsonInfo: function () {
