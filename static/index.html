@@ -15,7 +15,7 @@
 
         <v-toolbar height=128>
             <v-toolbar-items>
-                <img src="/static/Shark.png" alt="logo-image">
+                <img src="/static/Shark.png">
             </v-toolbar-items>
         </v-toolbar>
 
@@ -55,13 +55,12 @@
         </div>
 
         <div class="text-xs-right">
-            <v-btn fab dark color="indigo" id="upup" @click="$vuetify.goTo(target, options)">
+            <v-btn fixed dark fab bottom right color="pink" id="upup" @click="$vuetify.goTo(target, options)">
                 <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
             </v-btn>
         </div>
 
         <v-footer class="pa-3">
-            <v-spacer></v-spacer>
             <div>&copy; {{ new Date().getFullYear() }}</div>
         </v-footer>
 
