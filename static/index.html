@@ -50,7 +50,13 @@
         </v-container>
 
         <div class="text-xs-center">
-            <v-pagination :length="pages" v-model="page" @click="$vuetify.goTo(target, options)" @input="next" :total-visible="10"></v-pagination>
+            <v-pagination :length="pages" v-model="page" @input="next" :total-visible="10"></v-pagination>
+        </div>
+
+        <div class="text-xs-center">
+            <v-btn fab dark color="indigo" @click="$vuetify.goTo(target, options)">
+                <v-icon dark>add</v-icon>
+            </v-btn>
         </div>
 
         <v-footer class="pa-3">
