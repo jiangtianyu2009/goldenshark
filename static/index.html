@@ -55,7 +55,7 @@
 
         <div class="text-xs-center">
             <v-btn fab dark color="indigo" id="upup" @click="$vuetify.goTo(target, options)">
-                <v-icon dark>add</v-icon>
+                <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
             </v-btn>
         </div>
 
@@ -115,9 +115,9 @@
             next(page) {
                 axios.get('http://www.goldenshark.cf/thzdetails/' + page)
                     .then(function (response) {
-                        this.message = response.data;
                         console.log('Current page is ' + page);
                         document.getElementById("upup").click();
+                        this.message = response.data;
                     }.bind(this))
                     .catch(function (error) {
                         console.log(error);
