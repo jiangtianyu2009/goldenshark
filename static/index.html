@@ -25,7 +25,7 @@
                         <v-container fluid grid-list-md>
                             <v-layout row wrap>
                                 <v-flex xs12 v-for="thz in message" :key="thz.code">
-                                    <v-card>
+                                    <v-card hover ripple>
                                         <img v-lazy="thz.imgf" width="100%">
                                         <v-card-title primary-title>
                                             <div>
@@ -53,7 +53,7 @@
             <v-pagination :length="pages" v-model="page" @input="next" :total-visible="10"></v-pagination>
         </div>
 
-        <div class="text-xs-center">
+        <div class="text-xs-right">
             <v-btn fab dark color="indigo" id="upup" @click="$vuetify.goTo(target, options)">
                 <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
             </v-btn>
