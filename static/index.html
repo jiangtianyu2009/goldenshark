@@ -54,7 +54,7 @@
         </div>
 
         <div class="text-xs-center">
-            <v-btn fab dark color="indigo" @click="$vuetify.goTo(target, options)">
+            <v-btn fab dark color="indigo" id="upup" @click="$vuetify.goTo(target, options)">
                 <v-icon dark>add</v-icon>
             </v-btn>
         </div>
@@ -117,6 +117,7 @@
                     .then(function (response) {
                         this.message = response.data;
                         console.log('Current page is ' + page);
+                        document.getElementById("upup").click();
                     }.bind(this))
                     .catch(function (error) {
                         console.log(error);
