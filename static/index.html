@@ -104,7 +104,7 @@
         },
         methods: {
             getJsonInfo: function () {
-                axios.get('http://www.goldenshark.cf/thzdetails/1')
+                axios.get('http://www.goldenshark.ga/thzdetails/1')
                     .then(function (response) {
                         this.message = response.data;
                     }.bind(this))
@@ -113,7 +113,7 @@
                     });
             },
             getTotalPages: function () {
-                axios.get('http://www.goldenshark.cf/totalpages')
+                axios.get('http://www.goldenshark.ga/totalpages')
                     .then(function (response) {
                         this.pages = parseInt(response.data);
                     }.bind(this))
@@ -122,7 +122,7 @@
                     });
             },
             next(page) {
-                axios.get('http://www.goldenshark.cf/thzdetails/' + page)
+                axios.get('http://www.goldenshark.ga/thzdetails/' + page)
                     .then(function (response) {
                         console.log('Current page is ' + page);
                         document.getElementById("upup").click();
