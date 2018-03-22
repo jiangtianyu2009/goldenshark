@@ -20,74 +20,72 @@
 
 <div id="thzapp">
     <v-app id="inspire">
-        <div style="position: relative; overflow: hidden;">
 
-            <v-toolbar absolute color="teal lighten-3" dark scroll-off-screen scroll-target="#scrolling-techniques" height=128>
-                <v-toolbar-items>
-                    <img src="/static/Shark.png">
-                </v-toolbar-items>
-                <v-toolbar-title>Golden Shark</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                    <v-icon>search</v-icon>
-                </v-btn>
-                <v-btn icon>
-                    <v-icon>favorite</v-icon>
-                </v-btn>
-            </v-toolbar>
+        <v-toolbar absolute color="teal lighten-3" dark scroll-off-screen scroll-target="#scrolling-techniques" height=128>
+            <v-toolbar-items>
+                <img src="/static/Shark.png">
+            </v-toolbar-items>
+            <v-toolbar-title>Golden Shark</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+                <v-icon>search</v-icon>
+            </v-btn>
+            <v-btn icon>
+                <v-icon>favorite</v-icon>
+            </v-btn>
+        </v-toolbar>
 
-            <v-container fluid grid-list-xl>
-                <v-layout align-center>
-                    <v-flex xs12 sm8 offset-xs1>
-                        <v-card>
-                            <v-container fluid grid-list-md>
-                                <v-layout row wrap>
-                                    <v-flex xs12 v-for="thz in message" :key="thz.code">
-                                        <v-card hover ripple>
-                                            <!--
+        <v-container fluid grid-list-xl>
+            <v-layout align-center>
+                <v-flex xs12 sm8 offset-xs1>
+                    <v-card>
+                        <v-container fluid grid-list-md>
+                            <v-layout row wrap>
+                                <v-flex xs12 v-for="thz in message" :key="thz.code">
+                                    <v-card hover ripple>
+                                        <!--
                                         <img v-lazy="thz.imgf" width="100%">
                                         -->
-                                            <v-card-title primary-title>
-                                                <div>
-                                                    <h3 class="headline mb-0" v-text="thz.code"></h3>
-                                                    <br>
-                                                    <!--
+                                        <v-card-title primary-title>
+                                            <div>
+                                                <h3 class="headline mb-0" v-text="thz.code"></h3>
+                                                <br>
+                                                <!--
                                                 <h3 class="headline mb-0" v-text="thz.text"></h3>
                                                 <br>
                                                 -->
-                                                    <h3 class="headline mb-0" v-text="thz.name"></h3>
-                                                </div>
-                                            </v-card-title>
-                                            <v-card-actions>
-                                                <v-spacer></v-spacer>
-                                                <!--
+                                                <h3 class="headline mb-0" v-text="thz.name"></h3>
+                                            </div>
+                                        </v-card-title>
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+                                            <!--
                                             <v-btn color="success" :href="thz.href" target="_blank">Download</v-btn>
                                             -->
-                                            </v-card-actions>
-                                        </v-card>
-                                    </v-flex>
-                                </v-layout>
-                            </v-container>
-                        </v-card>
-                    </v-flex>
-                </v-layout>
-            </v-container>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
 
-            <div class="text-xs-center">
-                <v-pagination :length="pages" v-model="page" @input="next" :total-visible="10"></v-pagination>
-            </div>
-
-            <div class="text-xs-right">
-                <v-btn fixed dark fab bottom right color="pink" id="upup" @click="$vuetify.goTo(target, options)">
-                    <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
-                </v-btn>
-            </div>
-
-            <v-footer class="pa-3">
-                <div>&copy; {{ new Date().getFullYear() }}</div>
-            </v-footer>
-
+        <div class="text-xs-center">
+            <v-pagination :length="pages" v-model="page" @input="next" :total-visible="10"></v-pagination>
         </div>
+
+        <div class="text-xs-right">
+            <v-btn fixed dark fab bottom right color="pink" id="upup" @click="$vuetify.goTo(target, options)">
+                <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
+            </v-btn>
+        </div>
+
+        <v-footer class="pa-3">
+            <div>&copy; {{ new Date().getFullYear() }}</div>
+        </v-footer>
+
     </v-app>
 </div>
 <script>
