@@ -1,11 +1,9 @@
-from flask import Flask
-from flask import request
-from flask import jsonify
-from flask import send_from_directory
-from scrapinghub import ScrapinghubClient
-import subprocess
-import os
 import json
+import os
+import subprocess
+
+from flask import Flask, jsonify, request, send_from_directory
+from scrapinghub import ScrapinghubClient
 
 app = Flask(__name__)
 

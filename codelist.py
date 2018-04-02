@@ -1,5 +1,6 @@
-from scrapinghub import ScrapinghubClient
 import json
+
+from scrapinghub import ScrapinghubClient
 
 codelist = []
 apikey = '11befd9da9304fecb83dfa114d1926e9'
