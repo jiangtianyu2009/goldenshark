@@ -52,5 +52,4 @@ def corsresponse(origres):
     corsres.headers['Access-Control-Allow-Origin'] = '*'
     corsres.headers['Access-Control-Allow-Methods'] = 'GET, POST'
     corsres.headers['Access-Control-Allow-Headers'] = 'x-requested-with, content-type'
-    corsres.headers['Content-Type'] = 'application/json; charset=utf-8'
     return corsres
