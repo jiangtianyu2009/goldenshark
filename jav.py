@@ -23,22 +23,13 @@ def favicon():
 def getdetail(page_id):
     if request.method == 'GET':
         with open(r'/home/GoldenShark/codelist/' + str(page_id + 100) + r'.json', 'r') as thzfile:
-            thzdict = json.load(thzfile)
-            response = jsonify(thzdict)
-            response.headers['Access-Control-Allow-Origin'] = '*'
-            response.headers['Access-Control-Allow-Methods'] = 'GET'
-            response.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
-            return response
+            return corsresponse(json.load(thzfile))
 
 
 @app.route('/totalpages', methods=['GET'])
 def gettotalpages():
     if request.method == 'GET':
-        response = jsonify(len(os.listdir(r'/home/GoldenShark/codelist/')))
-        response.headers['Access-Control-Allow-Origin'] = '*'
-        response.headers['Access-Control-Allow-Methods'] = 'GET'
-        response.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
-        return response
+        return corsresponse(len(os.listdir(r'/home/GoldenShark/codelist/')))
 
 
 @app.route('/updatecode', methods=['POST'])
@@ -54,3 +45,11 @@ def fetchcodelist():
     if request.method == 'GET':
         subprocess.Popen(['python3', r'/home/GoldenShark/codelist.py'])
         return 'update run fetch code list'
+
+
+def corsresponse(origres):
+    corsres = jsonify(origres)
+    corsres.headers['Access-Control-Allow-Origin'] = '*'
+    corsres.headers['Access-Control-Allow-Methods'] = 'GET,POST'
+    corsres.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
+    return corsres
