@@ -24,13 +24,21 @@ def getdetail(page_id):
     if request.method == 'GET':
         with open(r'/home/GoldenShark/codelist/' + str(page_id + 100) + r'.json', 'r') as thzfile:
             thzdict = json.load(thzfile)
-            return jsonify(thzdict)
+            response = jsonify(thzdict)
+            response.headers['Access-Control-Allow-Origin'] = '*'
+            response.headers['Access-Control-Allow-Methods'] = 'GET'
+            response.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
+            return response
 
 
 @app.route('/totalpages', methods=['GET'])
 def gettotalpages():
     if request.method == 'GET':
-        return str(len(os.listdir(r'/home/GoldenShark/codelist/')))
+        response = jsonify(len(os.listdir(r'/home/GoldenShark/codelist/')))
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'GET'
+        response.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
+        return response
 
 
 @app.route('/updatecode', methods=['POST'])
