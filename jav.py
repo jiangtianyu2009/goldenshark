@@ -5,7 +5,7 @@ import subprocess
 from flask import Flask, jsonify, request, send_from_directory
 from scrapinghub import ScrapinghubClient
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 
 @app.route("/")
