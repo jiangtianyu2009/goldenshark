@@ -21,9 +21,11 @@ pagecounter = 101
 
 for item in lastcodejob.items.iter():
     if not os.path.exists(r'/home/GoldenShark/static/images/' + item['code'] + ".jpg"):
-        print('Downloading ' + item['code'] + ".jpg")
+        print('Downloading ' + item['code'] + ".jpg from " + item['imgf'])
         urllib.request.urlretrieve(
             item['imgf'], r'/home/GoldenShark/static/images/' + item['code'] + ".jpg")
+    else:
+        print(item['code'] + ".jpg exist.")
     if codecounter < pagesection:
         codelist.append(item)
         codecounter = codecounter + 1
