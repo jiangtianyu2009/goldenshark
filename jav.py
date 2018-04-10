@@ -44,7 +44,7 @@ def performupdatecode():
 def fetchcodelist():
     if request.method == 'GET':
         subprocess.Popen(['python3', r'/home/GoldenShark/codelist.py'])
-        return 'update run fetch code list'
+        return 'fetch code list and download images'
 
 
 def corsresponse(origres):

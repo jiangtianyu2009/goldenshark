@@ -1,4 +1,6 @@
 import json
+import os
+import urllib.request
 
 from scrapinghub import ScrapinghubClient
 
@@ -18,6 +20,10 @@ pagesection = 20
 pagecounter = 101
 
 for item in lastcodejob.items.iter():
+    if not os.path.exists(r'/home/GoldenShark/static/images/' + item['code'] + ".jpg"):
+        print('Downloading ' + item['code'] + ".jpg")
+        urllib.request.urlretrieve(
+            item['imgf'], r'/home/GoldenShark/static/images/' + item['code'] + ".jpg")
     if codecounter < pagesection:
         codelist.append(item)
         codecounter = codecounter + 1
