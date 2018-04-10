@@ -8,7 +8,7 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - curl http://www.goldenshark.ga/
-  - curl http://www.goldenshark.ga/codelist
+  - curl http://www.goldenshark.xyz/
+  - curl http://www.goldenshark.xyz/codelist
 notifications:
   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv
