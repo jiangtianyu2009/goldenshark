@@ -20,6 +20,9 @@ pagesection = 20
 pagecounter = 101
 
 for item in lastcodejob.items.iter():
+    print()
+    print('Code: ' + item['code'])
+    print('Imgf: ' + item['imgf'])
     if not os.path.exists(r'/home/GoldenShark/static/images/' + item['code'] + ".jpg"):
         print('Downloading ' + item['code'] + ".jpg from " + item['imgf'])
         urllib.request.urlretrieve(
