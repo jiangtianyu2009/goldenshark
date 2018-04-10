@@ -33,6 +33,7 @@ for item in lastcodejob.items.iter():
         else:
             print(item['code'] + ".jpg exist.")
         item['imgf'] = imgbaseurl + item['code'] + ".jpg"
+
         if codecounter < pagesection:
             codelist.append(item)
             codecounter = codecounter + 1
