@@ -43,8 +43,8 @@ def performupdatecode():
 @app.route('/codelist', methods=['GET'])
 def fetchcodelist():
     if request.method == 'GET':
-        subprocess.Popen(['python3', r'/home/GoldenShark/codelist.py',
-                          '>', r'/home/GoldenShark/codelist.log'])
+        subprocess.Popen(
+            ['python3', r'/home/GoldenShark/codelist.py'])
         return 'fetch code list and download images'
 
 
