@@ -5,6 +5,7 @@ import urllib.request
 from scrapinghub import ScrapinghubClient
 
 codelist = []
+codelistall = []
 apikey = '11befd9da9304fecb83dfa114d1926e9'
 client = ScrapinghubClient(apikey)
 project = client.get_project(252342)
@@ -34,21 +35,25 @@ for item in lastcodejob.items.iter():
             print(item['code'] + ".jpg exist.")
         item['imgf'] = imgbaseurl + item['code'] + ".jpg"
 
+        codelistall.append(item)
+        codelist.append(item)
         if codecounter < pagesection:
-            codelist.append(item)
             codecounter = codecounter + 1
         else:
-            codelistobj = json.dumps(codelist)
             codelistfile = open(r'/home/GoldenShark/codelist/' +
                                 str(pagecounter) + r'.json', 'w')
-            codelistfile.write(codelistobj)
+            codelistfile.write(json.dumps(codelist))
             codelistfile.close()
             codelist.clear()
             codecounter = 0
             pagecounter = pagecounter + 1
 
-codelistobj = json.dumps(codelist)
-codelistfile = open(r'/home/GoldenShark/codelist/' +
-                    str(pagecounter) + r'.json', 'w')
-codelistfile.write(codelistobj)
-codelistfile.close()
+if codelist:
+    codelistfile = open(r'/home/GoldenShark/codelist/' +
+                        str(pagecounter) + r'.json', 'w')
+    codelistfile.write(json.dumps(codelist))
+    codelistfile.close()
+
+codelistallfile = open(r'/home/GoldenShark/codelist/000.json', 'w')
+codelistallfile.write(json.dumps(codelistall))
+codelistallfile.close()
