@@ -29,7 +29,7 @@ def getdetail(page_id):
 @app.route('/totalpages', methods=['GET'])
 def gettotalpages():
     if request.method == 'GET':
-        return corsresponse(len(os.listdir(r'/home/GoldenShark/codelist/')))
+        return corsresponse(len(os.listdir(r'/home/GoldenShark/codelist/')) - 1)
 
 
 @app.route('/updatecode', methods=['POST'])
