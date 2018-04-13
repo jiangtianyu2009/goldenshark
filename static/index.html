@@ -45,7 +45,13 @@
                                                     <v-expansion-panel-content>
                                                         <div slot="header">{{thz.text}}</div>
                                                         <v-card>
-                                                            <v-card-text class="grey lighten-3">{{thz.pdat}}</v-card-text>
+                                                            <v-list>
+                                                                <v-list-tile v-for="pdatitem in thz.pdat" @click="">
+                                                                    <v-list-tile-content>
+                                                                        <v-list-tile-title v-text="pdatitem"></v-list-tile-title>
+                                                                    </v-list-tile-content>
+                                                                </v-list-tile>
+                                                            </v-list>
                                                         </v-card>
                                                     </v-expansion-panel-content>
                                                 </v-expansion-panel>
