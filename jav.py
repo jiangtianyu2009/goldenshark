@@ -43,9 +43,9 @@ def performupdatecode():
 @app.route('/codelist', methods=['GET'])
 def fetchcodelist():
     if request.method == 'GET':
-        subprocess.Popen(
-            ['python3', r'/home/GoldenShark/codelist.py'])
-        return 'fetch code list and download images'
+        ret = subprocess.Popen(['python3', r'/home/GoldenShark/codelist.py'],
+                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT).stdout.readlines()
+        return ret
 
 
 def corsresponse(origres):
