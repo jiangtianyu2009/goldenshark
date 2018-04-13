@@ -41,7 +41,11 @@
                                         <img v-lazy="thz.imgf" width="100%">
                                         <v-card-title primary-title>
                                             <div>
-                                                <h3 class="headline mb-0" v-text="thz.code"></h3>
+                                                <div>
+                                                    <v-btn flat large color="success">{{thz.code}}</v-btn>
+                                                    <v-btn color="error" :href="thz.href" target="_blank">THZ</v-btn>
+                                                    <v-btn color="warning" :href="thz.href" target="_blank">JAV</v-btn>
+                                                </div>
                                                 <br>
                                                 <h3 class="headline mb-0" v-text="thz.text"></h3>
                                                 <br>
