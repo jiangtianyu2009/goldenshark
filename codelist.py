@@ -17,7 +17,7 @@ print(codejob['key'])
 lastcodejob = project.jobs.get(codejob['key'])
 
 codecounter = 0
-pagesection = 20
+pagesection = 15
 pagecounter = 101
 imgbaseurl = 'https://www.goldenshark.xyz/images/'
 
