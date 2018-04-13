@@ -43,9 +43,9 @@ def performupdatecode():
 @app.route('/codelist', methods=['GET'])
 def fetchcodelist():
     if request.method == 'GET':
-        ret = subprocess.Popen(['python3', r'/home/GoldenShark/codelist.py'],
-                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT).stdout.readlines()
-        return 'update code list'
+        output = subprocess.check_output(
+            ['python3', r'/home/GoldenShark/codelist.py'])
+        return output
 
 
 def corsresponse(origres):
