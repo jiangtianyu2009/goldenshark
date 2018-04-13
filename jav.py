@@ -45,7 +45,7 @@ def fetchcodelist():
     if request.method == 'GET':
         ret = subprocess.Popen(['python3', r'/home/GoldenShark/codelist.py'],
                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT).stdout.readlines()
-        return corsresponse(ret)
+        return corsresponse(json.dumps(ret))
 
 
 def corsresponse(origres):
