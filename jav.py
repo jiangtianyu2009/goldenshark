@@ -44,7 +44,8 @@ def performupdatecode():
 def fetchcodelist():
     if request.method == 'GET':
         output = subprocess.check_output(
-            ['python3', r'/home/GoldenShark/codelist.py'])
+            ['python3', '/home/GoldenShark/codelist.py'],
+            stderr=subprocess.STDOUT).decode('utf-8')
         return output
 
 
