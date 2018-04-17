@@ -36,7 +36,7 @@ def gettotalpages():
 def performupdatecode():
     if request.method == 'POST':
         output = subprocess.check_output(
-            ['git', '-C', r'/home/GoldenShark', 'pull', '-v'])
+            ['git', '-C', r'/home/GoldenShark/', 'pull', '-v'])
         return output
 
 
@@ -46,6 +46,18 @@ def fetchcodelist():
         output = subprocess.check_output(
             ['python3', r'/home/GoldenShark/codelist.py'])
         return output
+
+
+@app.route('/pushimage', methods=['GET'])
+def gitpushimages():
+    if request.method == 'GET':
+        output1 = subprocess.check_output(
+            ['git', '-C', r'/home/bsonnier.github.io/', 'add', '-A'])
+        output2 = subprocess.check_output(
+            ['git', '-C', r'/home/bsonnier.github.io/', 'commit', '-m', r'"$(date) $(git status)"'])
+        output3 = subprocess.check_output(
+            ['git', '-C', r'/home/bsonnier.github.io/', 'push'])
+        return output1.append(output2).append(output3)
 
 
 def corsresponse(origres):

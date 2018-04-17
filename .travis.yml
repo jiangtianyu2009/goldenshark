@@ -10,5 +10,6 @@ install:
 script:
   - curl https://www.goldenshark.xyz/
   - curl https://www.goldenshark.xyz/codelist
+  - curl https://www.goldenshark.xyz/pushimage
 notifications:
   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv
