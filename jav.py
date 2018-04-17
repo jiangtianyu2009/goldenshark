@@ -52,12 +52,12 @@ def fetchcodelist():
 def gitpushimages():
     if request.method == 'GET':
         output1 = subprocess.check_output(
-            ['git', '-C', r'/home/bsonnier.github.io/', 'add', '-A'])
+            ['git', '-C', '/home/bsonnier.github.io/', 'add', '-A'])
         output2 = subprocess.check_output(
-            ['git', '-C', r'/home/bsonnier.github.io/', 'commit', '-m', r'\"$(date) $(git status)\"'])
+            ['git', '-C', '/home/bsonnier.github.io/', 'commit', '-m', '$(date) $(git status)'])
         output3 = subprocess.check_output(
-            ['git', '-C', r'/home/bsonnier.github.io/', 'push'])
-        return output1.append(output2).append(output3)
+            ['git', '-C', '/home/bsonnier.github.io/', 'push'])
+        return output2
 
 
 def corsresponse(origres):
