@@ -54,7 +54,7 @@ def gitpushimages():
         output1 = subprocess.check_output(
             ['git', '-C', r'/home/bsonnier.github.io/', 'add', '-A'])
         output2 = subprocess.check_output(
-            ['git', '-C', r'/home/bsonnier.github.io/', 'commit', '-m', r'"$(date) $(git status)"'])
+            ['git', '-C', r'/home/bsonnier.github.io/', 'commit', '-m', r'\"$(date) $(git status)\"'])
         output3 = subprocess.check_output(
             ['git', '-C', r'/home/bsonnier.github.io/', 'push'])
         return output1.append(output2).append(output3)
