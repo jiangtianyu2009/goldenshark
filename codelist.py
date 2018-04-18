@@ -24,9 +24,6 @@ imgbaseurl = 'https://www.goldenshark.me/images/'
 for item in lastcodejob.items.iter():
 
     if item['imgf'] is not None and 'http' in item['imgf']:
-        print()
-        print('Code: ' + item['code'])
-        print('Imgf: ' + item['imgf'])
         if not os.path.exists(r'/home/GoldenShark/static/images/' + item['code'] + ".jpg"):
             print('Downloading ' + item['code'] + ".jpg from " + item['imgf'])
             urllib.request.urlretrieve(
