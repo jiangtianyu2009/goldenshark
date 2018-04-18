@@ -52,7 +52,7 @@ def fetchcodelist():
 @app.route('/pushimage', methods=['GET'])
 def gitpushimages():
     if request.method == 'GET':
-        output = subprocess.check_output(['. /home/GoldenShark/gitpush.sh'])
+        output = subprocess.check_output(['.', '/home/GoldenShark/gitpush.sh'])
         return output
 
 
