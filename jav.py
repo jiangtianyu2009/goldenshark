@@ -45,20 +45,20 @@ def fetchcodelist():
     if request.method == 'GET':
         output = subprocess.check_output(
             ['python3', '/home/GoldenShark/codelist.py'],
-            stderr=subprocess.STDOUT).decode('utf-8')
-        return output
+            stderr=subprocess.STDOUT)
+        return output.decode('utf-8')
 
 
 @app.route('/pushimage', methods=['GET'])
 def gitpushimages():
     if request.method == 'GET':
         output1 = subprocess.check_output(
-            ['git', '-C', '/home/bsonnier.github.io/', 'add', '-A'])
+            ['git', '-C', '/home/bsonnier.github.io/', 'add', '-A'], shell=True)
         output2 = subprocess.check_output(
-            ['git', '-C', '/home/bsonnier.github.io/', 'commit', '-m', "$(date) $(git status)"])
+            ['git', '-C', '/home/bsonnier.github.io/', 'commit', '-m', "$(date)"], shell=True)
         output3 = subprocess.check_output(
-            ['git', '-C', '/home/bsonnier.github.io/', 'push'])
-        return output2
+            ['git', '-C', '/home/bsonnier.github.io/', 'push'], shell=True)
+        return output2.decode('utf-8')
 
 
 def corsresponse(origres):
