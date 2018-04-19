@@ -12,7 +12,7 @@ shclient = ScrapinghubClient(apikey)
 project = shclient.get_project(252342)
 asclient = algoliasearch.Client(
     "P7KK27HK91", 'ea4c0f459be0c5aa47abf593071a119e')
-asindex = asclient.init_index("testind")
+asindex = asclient.init_index("thzalgolia")
 asindex.set_settings({"customRanking": ["desc(href)"]})
 
 for job in list(project.jobs.iter_last(spider='myspider', state='finished')):
