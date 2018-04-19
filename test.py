@@ -7,4 +7,4 @@ index = client.init_index("testind")
 batch = json.load(open(r'/home/GoldenShark/codelist/101.json'))
 index.add_objects(batch)
 
-print(index.search("MIDE"))
+print(index.search("VENU"))
