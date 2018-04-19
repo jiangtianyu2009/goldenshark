@@ -2,13 +2,18 @@ import json
 import os
 import urllib.request
 
+from algoliasearch import algoliasearch
 from scrapinghub import ScrapinghubClient
 
 codelist = []
 codelistall = []
 apikey = '11befd9da9304fecb83dfa114d1926e9'
-client = ScrapinghubClient(apikey)
-project = client.get_project(252342)
+shclient = ScrapinghubClient(apikey)
+project = shclient.get_project(252342)
+asclient = algoliasearch.Client(
+    "P7KK27HK91", 'ea4c0f459be0c5aa47abf593071a119e')
+asindex = asclient.init_index("testind")
+asindex.set_settings({"customRanking": ["desc(href)"]})
 
 for job in list(project.jobs.iter_last(spider='myspider', state='finished')):
     codejob = job
@@ -28,9 +33,11 @@ for item in lastcodejob.items.iter():
             print('Downloading ' + item['code'] + ".jpg from " + item['imgf'])
             urllib.request.urlretrieve(
                 item['imgf'], r'/home/GoldenShark/static/images/' + item['code'] + ".jpg")
+            item['imgf'] = imgbaseurl + item['code'] + ".jpg"
         else:
             print(item['code'] + ".jpg exist.")
-        item['imgf'] = imgbaseurl + item['code'] + ".jpg"
+            item['imgf'] = imgbaseurl + item['code'] + ".jpg"
+            asindex.add_objects(item)
 
         codelistall.append(item)
         codelist.append(item)
