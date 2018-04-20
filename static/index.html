@@ -154,14 +154,10 @@
                 var client = algoliasearch('P7KK27HK91', 'fa8f8d512e4087d472e2c274173ceb19');
                 var index = client.initIndex('thzalgolia');
 
-                index.search({ query: acname },
+                index.search({ query: acname, hitsPerPage: 500 },
                     function searchDone(err, content) {
                         if (err) throw err;
                         console.log(content.hits);
-                        console.log(content.page);
-                        console.log(content.nbHits);
-                        console.log(content.nbPages);
-                        console.log(content.hitsPerPage);
                     });
             }
         }
