@@ -34,10 +34,10 @@ for item in lastcodejob.items.iter():
             urllib.request.urlretrieve(
                 item['imgf'], r'/home/GoldenShark/static/images/' + item['code'] + ".jpg")
             item['imgf'] = imgbaseurl + item['code'] + ".jpg"
+            asindex.add_object(item)
         else:
             print(item['code'] + ".jpg exist.")
             item['imgf'] = imgbaseurl + item['code'] + ".jpg"
-            asindex.add_object(item)
 
         codelistall.append(item)
         codelist.append(item)
