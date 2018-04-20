@@ -153,12 +153,13 @@
             searchIndex(acname) {
                 var client = algoliasearch('P7KK27HK91', 'fa8f8d512e4087d472e2c274173ceb19');
                 var index = client.initIndex('thzalgolia');
-
                 index.search({ query: acname, hitsPerPage: 500 },
                     function searchDone(err, content) {
                         if (err) throw err;
                         console.log(content.hits);
-                    });
+                        document.getElementById("upup").click();
+                        this.message = content.hits;
+                    }.bind(this));
             }
         }
     })
