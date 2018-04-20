@@ -158,6 +158,10 @@
                     function searchDone(err, content) {
                         if (err) throw err;
                         console.log(content.hits);
+                        console.log(content.page);
+                        console.log(content.nbHits);
+                        console.log(content.nbPages);
+                        console.log(content.hitsPerPage);
                     });
             }
         }
