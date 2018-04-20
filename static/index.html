@@ -78,7 +78,7 @@
         </v-container>
 
         <div class="text-xs-center">
-            <v-pagination :length="pages" v-model="page" @input="next" :total-visible="8"></v-pagination>
+            <v-pagination v-show="paginationShow" :length="pages" v-model="page" @input="next" :total-visible="8"></v-pagination>
         </div>
 
         <div class="text-xs-right">
@@ -100,7 +100,8 @@
         data: {
             message: '',
             page: 1,
-            pages: 0
+            pages: 0,
+            paginationShow: true
         },
         mounted: function () {
             this.getJsonInfo()
@@ -153,6 +154,7 @@
             searchIndex(acname) {
                 var client = algoliasearch('P7KK27HK91', 'fa8f8d512e4087d472e2c274173ceb19');
                 var index = client.initIndex('thzalgolia');
+                this.paginationShow = false;
                 index.search({ query: acname, hitsPerPage: 500 },
                     function searchDone(err, content) {
                         if (err) throw err;
