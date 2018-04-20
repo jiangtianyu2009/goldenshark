@@ -60,7 +60,7 @@
                                                     <v-btn color="warning" :href="thz.jref" target="_blank">JAV</v-btn>
                                                     <v-btn flat color="success" :href="thz.imgf" target="_blank">{{thz.code}}</v-btn>
                                                 </div>
-                                                <v-chip outline color="teal">{{thz.name}}</v-chip>
+                                                <button v-on:click="searchIndex({{thz.name}})">{{thz.name}}</button>
                                             </div>
                                         </v-card-title>
                                         <v-card-actions>
@@ -148,6 +148,9 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+            },
+            searchIndex(acname) {
+                console.log(acname);
             }
         }
     })
