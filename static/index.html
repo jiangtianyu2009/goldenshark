@@ -42,21 +42,23 @@
                                     <v-card hover ripple>
                                         <img v-lazy="thz.imgf" width="100%">
                                         <v-card-title primary-title>
-                                            <div>
-                                                <v-expansion-panel expand>
-                                                    <v-expansion-panel-content>
-                                                        <div slot="header">{{thz.text}}</div>
-                                                        <v-card>
-                                                            <v-list>
-                                                                <v-list-tile v-for="pdatitem in thz.pdat" @click="">
-                                                                    <v-list-tile-content>
-                                                                        <v-list-tile-title v-text="pdatitem"></v-list-tile-title>
-                                                                    </v-list-tile-content>
-                                                                </v-list-tile>
-                                                            </v-list>
-                                                        </v-card>
-                                                    </v-expansion-panel-content>
-                                                </v-expansion-panel>
+                                            <v-layout row wrap>
+                                                <v-flex xs12 lg12 mb-3>
+                                                    <v-expansion-panel>
+                                                        <v-expansion-panel-content>
+                                                            <div style="font-size:24px;" slot="header">{{thz.text}}</div>
+                                                            <v-card>
+                                                                <v-list>
+                                                                    <v-list-tile v-for="pdatitem in thz.pdat" @click="">
+                                                                        <v-list-tile-content>
+                                                                            <v-list-tile-title v-text="pdatitem"></v-list-tile-title>
+                                                                        </v-list-tile-content>
+                                                                    </v-list-tile>
+                                                                </v-list>
+                                                            </v-card>
+                                                        </v-expansion-panel-content>
+                                                    </v-expansion-panel>
+                                                </v-flex>
                                                 <div>
                                                     <v-btn color="error" :href="thz.href" target="_blank">THZ</v-btn>
                                                     <v-btn color="warning" :href="thz.jref" target="_blank">JAV</v-btn>
@@ -69,7 +71,7 @@
                                                         {{thz.name}}
                                                     </v-btn>
                                                 </div>
-                                            </div>
+                                            </v-layout>
                                         </v-card-title>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
