@@ -95,7 +95,11 @@
         </div>
 
         <v-footer class="pa-3">
-            <div>&copy; {{ new Date().getFullYear() }}</div>
+            <v-layout row wrap justify-center>
+                <div class="text-xs-center">&copy; {{ new Date().getFullYear() }}
+                    <strong>Golden Shark</strong>
+                </div>
+            </v-layout>
         </v-footer>
 
     </v-app>
