@@ -32,9 +32,9 @@
             </v-toolbar-items>
         </v-toolbar>
 
-        <v-container fluid grid-list-xl>
-            <v-layout align-center>
-                <v-flex xs12 sm8 offset-xs1>
+        <v-container grid-list-md text-xs-center>
+            <v-layout row justify-space-around>
+                <v-flex xs8>
                     <v-card>
                         <v-container fluid grid-list-md>
                             <v-layout row wrap>
@@ -83,6 +83,36 @@
                         </v-container>
                     </v-card>
                 </v-flex>
+
+                <v-flex xs4>
+                    <v-card>
+                        <v-container fluid grid-list-md style="max-height: 100vh" class="scroll-y">
+                            <v-layout row wrap>
+                                <v-flex>
+                                    <v-card hover ripple>
+                                        <v-card-title primary-title>
+                                            <div v-for="actorname in actornames" :key="actorname">
+                                                <v-btn round color="success" flat outline v-on:click="searchIndex(actorname)">
+                                                    {{actorname}}
+                                                </v-btn>
+                                            </div>
+                                        </v-card-title>
+                                    </v-card>
+                                    <br>
+                                    <v-card hover ripple>
+                                        <v-card-title primary-title>
+                                            <div v-for="codetag in codetags" :key="codetag">
+                                                <v-btn round color="warning" flat outline v-on:click="searchIndex(codetag)">
+                                                    {{codetag}}
+                                                </v-btn>
+                                            </div>
+                                        </v-card-title>
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+                    </v-card>
+                </v-flex>
             </v-layout>
         </v-container>
 
@@ -112,6 +142,8 @@
         el: '#thzapp',
         data: {
             message: '',
+            actornames: '',
+            codetags: '',
             page: 1,
             pages: 0,
             paginationShow: true
@@ -139,6 +171,20 @@
                 axios.get('https://www.goldenshark.xyz/thzdetails/1')
                     .then(function (response) {
                         this.message = response.data;
+                    }.bind(this))
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                axios.get('https://www.goldenshark.me/docs/namelist')
+                    .then(function (response) {
+                        this.actornames = response.data.split('\n');
+                    }.bind(this))
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                axios.get('https://www.goldenshark.me/docs/codetag')
+                    .then(function (response) {
+                        this.codetags = response.data.split('\n');
                     }.bind(this))
                     .catch(function (error) {
                         console.log(error);
