@@ -43,10 +43,10 @@ def performupdatecode():
 @app.route('/codelist', methods=['GET'])
 def fetchcodelist():
     if request.method == 'GET':
-        output = subprocess.check_output(
+        subprocess.check_output(
             ['python3', '/home/GoldenShark/codelist.py'],
             stderr=subprocess.STDOUT)
-        return output
+        return "Update codelist and download images."
 
 
 @app.route('/pushimage', methods=['GET'])
