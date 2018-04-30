@@ -36,7 +36,7 @@ for item in lastcodejob.items.iter():
             item['imgf'] = imgbaseurl + item['code'] + ".jpg"
             asindex.add_object(item)
         else:
-            # print(item['code'] + ".jpg exist.")
+            print(item['code'] + ".jpg exist.")
             item['imgf'] = imgbaseurl + item['code'] + ".jpg"
 
         codelistall.append(item)
