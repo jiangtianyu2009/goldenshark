@@ -33,7 +33,7 @@
         </v-toolbar>
 
         <v-container grid-list-md text-xs-center>
-            <v-layout row wrap justify-space-around>
+            <v-layout v-scroll="onScroll" row wrap justify-space-around>
 
                 <v-flex xs12 sm8>
                     <v-card>
@@ -128,9 +128,11 @@
         </div>
 
         <div class="text-xs-right">
-            <v-btn fixed dark fab bottom right color="pink" id="upup" @click="$vuetify.goTo(target, options)">
-                <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
-            </v-btn>
+            <v-fab-transition>
+                <v-btn fixed dark fab bottom right color="pink" id="upup" v-show="!hidden" @click="toTop">
+                    <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
+                </v-btn>
+            </v-fab-transition>
         </div>
 
         <v-footer class="pa-3">
@@ -154,7 +156,10 @@
             searchcontent: '',
             page: 1,
             pages: 0,
-            paginationShow: true
+            paginationShow: true,
+            hidden: true,
+            hiddenOffset: 200,
+            enablescrollevent: true
         },
         mounted: function () {
             this.getJsonInfo()
@@ -175,6 +180,18 @@
             }
         },
         methods: {
+            onScroll: function () {
+                if (this.enablescrollevent) {
+                    if (window.pageYOffset < this.hiddenOffset) this.hidden = true;
+                    else this.hidden = false;
+                }
+                if (window.pageYOffset < this.hiddenOffset) this.enablescrollevent = true;
+            },
+            toTop: function () {
+                this.enablescrollevent = false;
+                this.hidden = true;
+                this.$vuetify.goTo(this.target, this.options);
+            },
             getJsonInfo: function () {
                 axios.get('https://www.goldenshark.xyz/thzdetails/1')
                     .then(function (response) {
