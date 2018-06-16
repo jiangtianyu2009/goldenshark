@@ -21,7 +21,7 @@
     </script>
 </head>
 
-<body style="font-family:Arial,'NOW-MM',sans-serif;">
+<body style="font-family:Arial,sans-serif;">
     <div id="thzapp">
         <v-app id="inspire">
 
@@ -50,12 +50,12 @@
                                                     <v-flex xs12 lg12 mb-3>
                                                         <v-expansion-panel>
                                                             <v-expansion-panel-content>
-                                                                <div style="font-family:'NOW-MM',sans-serif;font-size:24px;" slot="header">{{thz.text}}</div>
+                                                                <div style="font-family:'NOW-MM';font-size:24px;" slot="header">{{thz.text}}</div>
                                                                 <v-card>
                                                                     <v-list>
                                                                         <v-list-tile v-for="pdatitem in thz.pdat" @click="">
                                                                             <v-list-tile-content>
-                                                                                <v-list-tile-title v-text="pdatitem"></v-list-tile-title>
+                                                                                <v-list-tile-title style="font-family:'NOW-MM';" v-text="pdatitem"></v-list-tile-title>
                                                                             </v-list-tile-content>
                                                                         </v-list-tile>
                                                                     </v-list>
@@ -70,7 +70,7 @@
                                                             <v-icon left>photo</v-icon>
                                                             {{thz.code}}
                                                         </v-btn>
-                                                        <v-btn round color="success" text-color="white" v-on:click="searchIndex(thz.name)">
+                                                        <v-btn round color="success" text-color="white" v-on:click="searchIndex(thz.name)" style="font-family:'NOW-MM';">
                                                             <v-icon left>face</v-icon>
                                                             {{thz.name}}
                                                         </v-btn>
