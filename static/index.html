@@ -20,244 +20,246 @@
     </script>
 </head>
 
-<div id="thzapp">
-    <v-app id="inspire">
+<body style="font-family:Arial,sans-serif;">
+    <div id="thzapp">
+        <v-app id="inspire">
 
-        <v-toolbar height=128>
-            <v-toolbar-items>
-                <a href="https://www.goldenshark.xyz/">
-                    <img src="https://www.goldenshark.xyz/Shark.png">
-                </a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <div class="font-effect-crackle" style="font-family:'Gaegu';font-size:6vw;text-align:right;margin:auto;vertical-align:middle;line-height:128px;">Golden Shark</div>
-            </v-toolbar-items>
-        </v-toolbar>
+            <v-toolbar height=128>
+                <v-toolbar-items>
+                    <a href="https://www.goldenshark.xyz/">
+                        <img src="https://www.goldenshark.xyz/Shark.png">
+                    </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="font-effect-crackle" style="font-family:'Gaegu';font-size:6vw;text-align:right;margin:auto;vertical-align:middle;line-height:128px;">Golden Shark</div>
+                </v-toolbar-items>
+            </v-toolbar>
 
-        <v-container grid-list-md text-xs-center>
-            <v-layout v-scroll="onScroll" row wrap justify-space-around>
+            <v-container grid-list-md text-xs-center>
+                <v-layout v-scroll="onScroll" row wrap justify-space-around>
 
-                <v-flex xs12 sm8>
-                    <v-card>
-                        <v-container fluid grid-list-md>
-                            <v-layout row wrap>
-                                <v-flex xs12 v-for="thz in message" :key="thz.code">
-                                    <v-card hover>
-                                        <img v-lazy="thz.imgf" width="100%">
-                                        <v-card-title primary-title>
-                                            <v-layout row wrap>
-                                                <v-flex xs12 lg12 mb-3>
-                                                    <v-expansion-panel>
-                                                        <v-expansion-panel-content>
-                                                            <div style="font-size:24px;" slot="header">{{thz.text}}</div>
-                                                            <v-card>
-                                                                <v-list>
-                                                                    <v-list-tile v-for="pdatitem in thz.pdat" @click="">
-                                                                        <v-list-tile-content>
-                                                                            <v-list-tile-title v-text="pdatitem"></v-list-tile-title>
-                                                                        </v-list-tile-content>
-                                                                    </v-list-tile>
-                                                                </v-list>
-                                                            </v-card>
-                                                        </v-expansion-panel-content>
-                                                    </v-expansion-panel>
-                                                </v-flex>
-                                                <div>
-                                                    <v-btn color="error" :href="thz.href" target="_blank">THZ</v-btn>
-                                                    <v-btn color="warning" :href="thz.jref" target="_blank">JAV</v-btn>
-                                                    <v-btn flat outline color="success" :href="thz.imgf" target="_blank">
-                                                        <v-icon left>photo</v-icon>
-                                                        {{thz.code}}
-                                                    </v-btn>
-                                                    <v-btn round color="success" text-color="white" v-on:click="searchIndex(thz.name)">
-                                                        <v-icon left>face</v-icon>
-                                                        {{thz.name}}
+                    <v-flex xs12 sm8>
+                        <v-card>
+                            <v-container fluid grid-list-md>
+                                <v-layout row wrap>
+                                    <v-flex xs12 v-for="thz in message" :key="thz.code">
+                                        <v-card hover>
+                                            <img v-lazy="thz.imgf" width="100%">
+                                            <v-card-title primary-title>
+                                                <v-layout row wrap>
+                                                    <v-flex xs12 lg12 mb-3>
+                                                        <v-expansion-panel>
+                                                            <v-expansion-panel-content>
+                                                                <div style="font-size:24px;" slot="header">{{thz.text}}</div>
+                                                                <v-card>
+                                                                    <v-list>
+                                                                        <v-list-tile v-for="pdatitem in thz.pdat" @click="">
+                                                                            <v-list-tile-content>
+                                                                                <v-list-tile-title v-text="pdatitem"></v-list-tile-title>
+                                                                            </v-list-tile-content>
+                                                                        </v-list-tile>
+                                                                    </v-list>
+                                                                </v-card>
+                                                            </v-expansion-panel-content>
+                                                        </v-expansion-panel>
+                                                    </v-flex>
+                                                    <div>
+                                                        <v-btn color="error" :href="thz.href" target="_blank">THZ</v-btn>
+                                                        <v-btn color="warning" :href="thz.jref" target="_blank">JAV</v-btn>
+                                                        <v-btn flat outline color="success" :href="thz.imgf" target="_blank">
+                                                            <v-icon left>photo</v-icon>
+                                                            {{thz.code}}
+                                                        </v-btn>
+                                                        <v-btn round color="success" text-color="white" v-on:click="searchIndex(thz.name)">
+                                                            <v-icon left>face</v-icon>
+                                                            {{thz.name}}
+                                                        </v-btn>
+                                                    </div>
+                                                </v-layout>
+                                            </v-card-title>
+                                            <v-card-actions>
+                                                <v-spacer></v-spacer>
+                                                <v-btn color="success" :href="thz.dlnk" target="_blank">Download</v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-card>
+                    </v-flex>
+
+                    <v-flex xs12 sm4>
+                        <v-card>
+                            <v-container fluid grid-list-md>
+                                <v-layout row wrap>
+                                    <v-flex>
+                                        <v-card hover ripple>
+                                            <v-card-title primary-title>
+                                                <v-text-field solo label="Search" prepend-icon="search" v-model="searchcontent" @keyup.enter="searchIndex(searchcontent)"></v-text-field>
+                                            </v-card-title>
+                                        </v-card>
+                                        <br>
+                                        <v-card hover ripple>
+                                            <v-card-title primary-title>
+                                                <div v-for="codetag in codetags" :key="codetag">
+                                                    <v-btn round color="warning" flat outline v-on:click="searchIndex(codetag)">
+                                                        {{codetag}}
                                                     </v-btn>
                                                 </div>
-                                            </v-layout>
-                                        </v-card-title>
-                                        <v-card-actions>
-                                            <v-spacer></v-spacer>
-                                            <v-btn color="success" :href="thz.dlnk" target="_blank">Download</v-btn>
-                                        </v-card-actions>
-                                    </v-card>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card>
-                </v-flex>
+                                            </v-card-title>
+                                        </v-card>
+                                        <br>
+                                        <v-card hover ripple>
+                                            <v-card-title primary-title>
+                                                <div v-for="actorname in actornames" :key="actorname">
+                                                    <v-btn round color="success" flat outline v-on:click="searchIndex(actorname)">
+                                                        {{actorname}}
+                                                    </v-btn>
+                                                </div>
+                                            </v-card-title>
+                                        </v-card>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-container>
 
-                <v-flex xs12 sm4>
-                    <v-card>
-                        <v-container fluid grid-list-md>
-                            <v-layout row wrap>
-                                <v-flex>
-                                    <v-card hover ripple>
-                                        <v-card-title primary-title>
-                                            <v-text-field solo label="Search" prepend-icon="search" v-model="searchcontent" @keyup.enter="searchIndex(searchcontent)"></v-text-field>
-                                        </v-card-title>
-                                    </v-card>
-                                    <br>
-                                    <v-card hover ripple>
-                                        <v-card-title primary-title>
-                                            <div v-for="codetag in codetags" :key="codetag">
-                                                <v-btn round color="warning" flat outline v-on:click="searchIndex(codetag)">
-                                                    {{codetag}}
-                                                </v-btn>
-                                            </div>
-                                        </v-card-title>
-                                    </v-card>
-                                    <br>
-                                    <v-card hover ripple>
-                                        <v-card-title primary-title>
-                                            <div v-for="actorname in actornames" :key="actorname">
-                                                <v-btn round color="success" flat outline v-on:click="searchIndex(actorname)">
-                                                    {{actorname}}
-                                                </v-btn>
-                                            </div>
-                                        </v-card-title>
-                                    </v-card>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card>
-                </v-flex>
-            </v-layout>
-        </v-container>
+            <div class="text-xs-center">
+                <v-pagination circle v-show="paginationShow" :length="pages" v-model="page" @input="next" :total-visible="12"></v-pagination>
+            </div>
 
-        <div class="text-xs-center">
-            <v-pagination circle v-show="paginationShow" :length="pages" v-model="page" @input="next" :total-visible="12"></v-pagination>
-        </div>
+            <div class="text-xs-right">
+                <v-fab-transition>
+                    <v-btn fixed dark fab bottom right color="pink" id="upup" v-show="!hidden" @click="toTop">
+                        <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
+                    </v-btn>
+                </v-fab-transition>
+            </div>
 
-        <div class="text-xs-right">
-            <v-fab-transition>
-                <v-btn fixed dark fab bottom right color="pink" id="upup" v-show="!hidden" @click="toTop">
-                    <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
-                </v-btn>
-            </v-fab-transition>
-        </div>
+            <v-footer class="pa-3">
+                <v-layout row wrap justify-center>
+                    <div class="text-xs-center">&copy; {{ new Date().getFullYear() }}
+                        <strong>Golden Shark</strong>
+                    </div>
+                </v-layout>
+            </v-footer>
 
-        <v-footer class="pa-3">
-            <v-layout row wrap justify-center>
-                <div class="text-xs-center">&copy; {{ new Date().getFullYear() }}
-                    <strong>Golden Shark</strong>
-                </div>
-            </v-layout>
-        </v-footer>
-
-    </v-app>
-</div>
-<script>
-    Vue.use(VueLazyload)
-    var thzapp = new Vue({
-        el: '#thzapp',
-        data: {
-            message: '',
-            actornames: '',
-            codetags: '',
-            searchcontent: '',
-            page: 1,
-            pages: 0,
-            paginationShow: true,
-            hidden: true,
-            hiddenOffset: 200,
-            enablescrollevent: true
-        },
-        mounted: function () {
-            this.getJsonInfo()
-        },
-        created: function () {
-            this.getTotalPages()
-        },
-        computed: {
-            target() {
-                return 0
+        </v-app>
+    </div>
+    <script>
+        Vue.use(VueLazyload)
+        var thzapp = new Vue({
+            el: '#thzapp',
+            data: {
+                message: '',
+                actornames: '',
+                codetags: '',
+                searchcontent: '',
+                page: 1,
+                pages: 0,
+                paginationShow: true,
+                hidden: true,
+                hiddenOffset: 200,
+                enablescrollevent: true
             },
-            options() {
-                return {
-                    duration: 1000,
-                    offset: 0,
-                    easing: 'easeInOutCubic'
+            mounted: function () {
+                this.getJsonInfo()
+            },
+            created: function () {
+                this.getTotalPages()
+            },
+            computed: {
+                target() {
+                    return 0
+                },
+                options() {
+                    return {
+                        duration: 1000,
+                        offset: 0,
+                        easing: 'easeInOutCubic'
+                    }
+                }
+            },
+            methods: {
+                onScroll: function () {
+                    if (this.enablescrollevent) {
+                        if (window.pageYOffset < this.hiddenOffset) this.hidden = true;
+                        else this.hidden = false;
+                    }
+                    if (window.pageYOffset < this.hiddenOffset) this.enablescrollevent = true;
+                },
+                toTop: function () {
+                    this.enablescrollevent = false;
+                    this.hidden = true;
+                    this.$vuetify.goTo(this.target, this.options);
+                },
+                getJsonInfo: function () {
+                    axios.get('https://www.goldenshark.xyz/thzdetails/1')
+                        .then(function (response) {
+                            this.message = response.data;
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    axios.get('https://www.goldenshark.me/docs/namelist')
+                        .then(function (response) {
+                            this.actornames = response.data.split('\n');
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    axios.get('https://www.goldenshark.me/docs/codetag')
+                        .then(function (response) {
+                            this.codetags = response.data.split('\n');
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                getTotalPages: function () {
+                    axios.get('https://www.goldenshark.xyz/totalpages')
+                        .then(function (response) {
+                            this.pages = parseInt(response.data);
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                next(page) {
+                    axios.get('https://www.goldenshark.xyz/thzdetails/' + page)
+                        .then(function (response) {
+                            console.log('Current page is ' + page);
+                            document.getElementById("upup").click();
+                            this.message = response.data;
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                searchIndex(acname) {
+                    const toast = swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 4000
+                    });
+                    toast({
+                        type: 'success',
+                        title: 'Searching'
+                    });
+                    var client = algoliasearch('P7KK27HK91', 'fa8f8d512e4087d472e2c274173ceb19');
+                    var index = client.initIndex('thzalgolia');
+                    this.paginationShow = false;
+                    index.search({ query: acname, hitsPerPage: 500 },
+                        function searchDone(err, content) {
+                            if (err) throw err;
+                            console.log(content.hits);
+                            document.getElementById("upup").click();
+                            this.message = content.hits;
+                        }.bind(this));
                 }
             }
-        },
-        methods: {
-            onScroll: function () {
-                if (this.enablescrollevent) {
-                    if (window.pageYOffset < this.hiddenOffset) this.hidden = true;
-                    else this.hidden = false;
-                }
-                if (window.pageYOffset < this.hiddenOffset) this.enablescrollevent = true;
-            },
-            toTop: function () {
-                this.enablescrollevent = false;
-                this.hidden = true;
-                this.$vuetify.goTo(this.target, this.options);
-            },
-            getJsonInfo: function () {
-                axios.get('https://www.goldenshark.xyz/thzdetails/1')
-                    .then(function (response) {
-                        this.message = response.data;
-                    }.bind(this))
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                axios.get('https://www.goldenshark.me/docs/namelist')
-                    .then(function (response) {
-                        this.actornames = response.data.split('\n');
-                    }.bind(this))
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                axios.get('https://www.goldenshark.me/docs/codetag')
-                    .then(function (response) {
-                        this.codetags = response.data.split('\n');
-                    }.bind(this))
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
-            getTotalPages: function () {
-                axios.get('https://www.goldenshark.xyz/totalpages')
-                    .then(function (response) {
-                        this.pages = parseInt(response.data);
-                    }.bind(this))
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
-            next(page) {
-                axios.get('https://www.goldenshark.xyz/thzdetails/' + page)
-                    .then(function (response) {
-                        console.log('Current page is ' + page);
-                        document.getElementById("upup").click();
-                        this.message = response.data;
-                    }.bind(this))
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
-            searchIndex(acname) {
-                const toast = swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 4000
-                });
-                toast({
-                    type: 'success',
-                    title: 'Searching'
-                });
-                var client = algoliasearch('P7KK27HK91', 'fa8f8d512e4087d472e2c274173ceb19');
-                var index = client.initIndex('thzalgolia');
-                this.paginationShow = false;
-                index.search({ query: acname, hitsPerPage: 500 },
-                    function searchDone(err, content) {
-                        if (err) throw err;
-                        console.log(content.hits);
-                        document.getElementById("upup").click();
-                        this.message = content.hits;
-                    }.bind(this));
-            }
-        }
-    })
-</script>
+        })
+    </script>
+</body>
