@@ -4,6 +4,7 @@
     <script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+    <script src="https://unpkg.com/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons|Gaegu:700&effect=crackle' rel="stylesheet">
     <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
@@ -236,6 +237,16 @@
                     });
             },
             searchIndex(acname) {
+                const toast = swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 4000
+                });
+                toast({
+                    type: 'success',
+                    title: 'Searching'
+                });
                 var client = algoliasearch('P7KK27HK91', 'fa8f8d512e4087d472e2c274173ceb19');
                 var index = client.initIndex('thzalgolia');
                 this.paginationShow = false;
