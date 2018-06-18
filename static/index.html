@@ -51,12 +51,12 @@
                                                     <v-flex xs12 lg12 mb-3>
                                                         <v-expansion-panel>
                                                             <v-expansion-panel-content>
-                                                                <div style="font-family:'source-han-sans-japanese',sans-serif;font-size:24px;" slot="header">{{thz.text}}</div>
+                                                                <div style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;font-size:24px;" slot="header">{{thz.text}}</div>
                                                                 <v-card>
                                                                     <v-list>
                                                                         <v-list-tile v-for="pdatitem in thz.pdat" @click="">
                                                                             <v-list-tile-content>
-                                                                                <v-list-tile-title style="font-family:'heisei-maru-gothic-std',sans-serif;" v-text="pdatitem"></v-list-tile-title>
+                                                                                <v-list-tile-title style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;" v-text="pdatitem"></v-list-tile-title>
                                                                             </v-list-tile-content>
                                                                         </v-list-tile>
                                                                     </v-list>
@@ -71,7 +71,8 @@
                                                             <v-icon left>photo</v-icon>
                                                             {{thz.code}}
                                                         </v-btn>
-                                                        <v-btn round color="success" text-color="white" style="font-family:'heisei-maru-gothic-std',sans-serif;" v-on:click="searchIndex(thz.name)">
+                                                        <v-btn round color="success" text-color="white" style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;"
+                                                            v-on:click="searchIndex(thz.name)">
                                                             <v-icon left>face</v-icon>
                                                             {{thz.name}}
                                                         </v-btn>
@@ -103,7 +104,8 @@
                                         <v-card hover ripple>
                                             <v-card-title primary-title>
                                                 <div v-for="codetag in codetags" :key="codetag">
-                                                    <v-btn round color="warning" flat outline style="font-family:'heisei-maru-gothic-std',sans-serif;" v-on:click="searchIndex(codetag)">
+                                                    <v-btn round color="warning" flat outline style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;"
+                                                        v-on:click="searchIndex(codetag)">
                                                         {{codetag}}
                                                     </v-btn>
                                                 </div>
@@ -113,7 +115,8 @@
                                         <v-card hover ripple>
                                             <v-card-title primary-title>
                                                 <div v-for="actorname in actornames" :key="actorname">
-                                                    <v-btn round color="success" flat outline style="font-family:'heisei-maru-gothic-std',sans-serif;" v-on:click="searchIndex(actorname)">
+                                                    <v-btn round color="success" flat outline style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;"
+                                                        v-on:click="searchIndex(actorname)">
                                                         {{actorname}}
                                                     </v-btn>
                                                 </div>
