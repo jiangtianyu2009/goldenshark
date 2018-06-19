@@ -235,6 +235,16 @@
                         });
                 },
                 next(page) {
+                    const toast = swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    toast({
+                        type: 'success',
+                        title: 'Loading'
+                    });
                     axios.get('https://www.goldenshark.xyz/thzdetails/' + page)
                         .then(function (response) {
                             console.log('Current page is ' + page);
