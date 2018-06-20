@@ -202,7 +202,7 @@
                 downoptions() {
                     return {
                         duration: 1000,
-                        offset: 19999,
+                        offset: 99999,
                         easing: 'easeInOutCubic'
                     }
                 }
@@ -270,7 +270,7 @@
                     axios.get('https://www.goldenshark.xyz/thzdetails/' + page)
                         .then(function (response) {
                             console.log('Current page is ' + page);
-                            document.getElementById("upup").click();
+                            this.toTop();
                             this.message = response.data;
                         }.bind(this))
                         .catch(function (error) {
@@ -295,7 +295,7 @@
                         function searchDone(err, content) {
                             if (err) throw err;
                             console.log(content.hits);
-                            document.getElementById("upup").click();
+                            this.toTop();
                             this.message = content.hits;
                         }.bind(this));
                 }
