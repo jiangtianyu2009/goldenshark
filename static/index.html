@@ -138,11 +138,21 @@
             </div>
 
             <div class="text-xs-right">
-                <v-fab-transition>
-                    <v-btn fixed dark fab bottom right color="pink" id="upup" v-show="!hidden" @click="toTop">
-                        <i aria-hidden="true" class="icon material-icons">keyboard_arrow_up</i>
+                <v-speed-dial fixed v-model="fab" bottom right open-on-hover transition="slide-y-reverse-transition">
+                    <v-btn slot="activator" v-model="fab" color="blue" dark fab>
+                        <v-icon>menu</v-icon>
+                        <v-icon>close</v-icon>
                     </v-btn>
-                </v-fab-transition>
+                    <v-btn fab dark small color="indigo" href="https://www.goldenshark.xyz/">
+                        <v-icon>home</v-icon>
+                    </v-btn>
+                    <v-btn fab dark small color="green" id="downdown" @click="toBottom">
+                        <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn fab dark small color="red" id="upup" v-show="!uphidden" @click="toTop">
+                        <v-icon>arrow_upward</v-icon>
+                    </v-btn>
+                </v-speed-dial>
             </div>
 
             <v-footer class="pa-3">
@@ -167,9 +177,10 @@
                 page: 1,
                 pages: 0,
                 paginationShow: true,
-                hidden: true,
-                hiddenOffset: 200,
-                enablescrollevent: true
+                uphidden: true,
+                uphiddenOffset: 200,
+                enablescrollevent: true,
+                fab: false
             },
             mounted: function () {
                 this.getJsonInfo()
@@ -181,10 +192,17 @@
                 target() {
                     return 0
                 },
-                options() {
+                upoptions() {
                     return {
                         duration: 1000,
                         offset: 0,
+                        easing: 'easeInOutCubic'
+                    }
+                },
+                downoptions() {
+                    return {
+                        duration: 1000,
+                        offset: 19999,
                         easing: 'easeInOutCubic'
                     }
                 }
@@ -192,15 +210,19 @@
             methods: {
                 onScroll: function () {
                     if (this.enablescrollevent) {
-                        if (window.pageYOffset < this.hiddenOffset) this.hidden = true;
-                        else this.hidden = false;
+                        if (window.pageYOffset < this.uphiddenOffset) this.uphidden = true;
+                        else this.uphidden = false;
                     }
-                    if (window.pageYOffset < this.hiddenOffset) this.enablescrollevent = true;
+                    if (window.pageYOffset < this.uphiddenOffset) this.enablescrollevent = true;
                 },
                 toTop: function () {
                     this.enablescrollevent = false;
-                    this.hidden = true;
-                    this.$vuetify.goTo(this.target, this.options);
+                    this.uphidden = true;
+                    this.$vuetify.goTo(this.target, this.upoptions);
+                },
+                toBottom: function () {
+                    this.enablescrollevent = false;
+                    this.$vuetify.goTo(this.target, this.downoptions);
                 },
                 getJsonInfo: function () {
                     axios.get('https://www.goldenshark.xyz/thzdetails/1')
