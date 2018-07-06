@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.6.5"
+  - "3.7"
 os:
   - linux
 # command to install dependencies
