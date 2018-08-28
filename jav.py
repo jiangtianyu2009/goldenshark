@@ -49,6 +49,14 @@ def fetchcodelist():
         return output
 
 
+@app.route('/algoliaupdate', methods=['GET'])
+def updatealgolia():
+    if request.method == 'GET':
+        subprocess.Popen(
+            ['python3', '/home/GoldenShark/algoliaupdate.py'])
+        return 'Execute Algolia Update.'
+
+
 @app.route('/pushimage', methods=['GET'])
 def gitpushimages():
     if request.method == 'GET':
