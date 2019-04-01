@@ -19,8 +19,8 @@
 
             <v-toolbar height=128>
                 <v-toolbar-items>
-                    <a href="https://www.goldenshark.xyz/">
-                        <img src="https://www.goldenshark.xyz/Shark.png">
+                    <a href="https://www.alpacapapa.com/">
+                        <img src="https://www.alpacapapa.com/Shark.png">
                     </a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="font-effect-crackle" style="font-family:'Gaegu';font-size:6vw;text-align:right;margin:auto;vertical-align:middle;line-height:128px;">Golden Shark</div>
@@ -134,7 +134,7 @@
                         <v-icon>menu</v-icon>
                         <v-icon>close</v-icon>
                     </v-btn>
-                    <v-btn fab dark small color="indigo" href="https://www.goldenshark.xyz/">
+                    <v-btn fab dark small color="indigo" href="https://www.alpacapapa.com/">
                         <v-icon>home</v-icon>
                     </v-btn>
                     <v-btn fab dark small color="green" id="downdown" @click="toBottom">
@@ -216,7 +216,7 @@
                     this.$vuetify.goTo(this.target, this.downoptions);
                 },
                 getJsonInfo: function () {
-                    axios.get('https://www.goldenshark.xyz/thzdetails/1')
+                    axios.get('https://www.alpacapapa.com/thzdetails/1')
                         .then(function (response) {
                             this.message = response.data;
                         }.bind(this))
@@ -239,7 +239,7 @@
                         });
                 },
                 getTotalPages: function () {
-                    axios.get('https://www.goldenshark.xyz/totalpages')
+                    axios.get('https://www.alpacapapa.com/totalpages')
                         .then(function (response) {
                             this.pages = parseInt(response.data);
                         }.bind(this))
@@ -258,7 +258,7 @@
                         type: 'success',
                         title: 'Loading'
                     });
-                    axios.get('https://www.goldenshark.xyz/thzdetails/' + page)
+                    axios.get('https://www.alpacapapa.com/thzdetails/' + page)
                         .then(function (response) {
                             console.log('Current page is ' + page);
                             this.toTop();
