@@ -16,7 +16,7 @@ for job in list(project.jobs.iter_last(spider='myspider', state='finished')):
 print(codejob['key'])
 lastcodejob = project.jobs.get(codejob['key'])
 
-imgbaseurl = 'https://www.goldenshark.me/images/'
+imgbaseurl = 'https://www.alpacapapahub.com/images/'
 
 for item in lastcodejob.items.iter():
     if item['imgf'] is not None and 'http' in item['imgf']:
