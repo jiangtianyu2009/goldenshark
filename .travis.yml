@@ -12,8 +12,8 @@ script:
 jobs:
   include:
     - stage: test
-      script: test_1.py
-    - stage: test
-      script: test_2.py
+      script: python test_1.py
+    - # stage name not required, will continue to use `test`
+      script: python test_2.py
     - stage: deploy
       script: python your-daemon-or-script.py
