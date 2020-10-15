@@ -5,6 +5,7 @@ os:
 install:
   - pip install -r requirements.txt
 # command to run tests
-# script:
+script:
+  - python your-daemon-or-script.py
 #   - curl https://www.alpacapapa.com/codelist
 #   - curl https://www.alpacapapa.com/pushimage
