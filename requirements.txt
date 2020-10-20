@@ -1,2 +1,6 @@
 # This is an implicit value, here for clarity
 --index https://pypi.python.org/simple/
+
+gunicorn
+flask
+scrapinghub
