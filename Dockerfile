@@ -7,6 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 4000
-
-ENTRYPOINT ["gunicorn", "--config", "/src/gunicorn.conf", "jav:app"]
+ENTRYPOINT ["gunicorn", "--config", "/src/gunicorn.conf.py", "jav:app"]
