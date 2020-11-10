@@ -1,0 +1,296 @@
+<head>
+    <title>Golden Shark</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vuetify@1.0.19/dist/vuetify.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
+    <script src="https://use.typekit.net/jmo2azg.js"></script>
+    <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons|Gaegu:700&effect=crackle' rel="stylesheet">
+    <link href="https://unpkg.com/vuetify@1.0.19/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body style="font-family:Arial,sans-serif;">
+    <div id="thzapp">
+        <v-app id="inspire">
+
+            <v-toolbar height=128>
+                <v-toolbar-items>
+                    <a href="https://www.alpacapapa.com/">
+                        <img src="https://www.alpacapapa.com/Shark.png">
+                    </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="font-effect-crackle" style="font-family:'Gaegu';font-size:6vw;text-align:right;margin:auto;vertical-align:middle;line-height:128px;">Golden Shark</div>
+                </v-toolbar-items>
+            </v-toolbar>
+
+            <v-container grid-list-md text-xs-center>
+                <v-layout v-scroll="onScroll" row wrap justify-space-around>
+
+                    <v-flex xs12 sm8>
+                        <v-card>
+                            <v-container fluid grid-list-md>
+                                <v-layout row wrap>
+                                    <v-flex xs12 v-for="thz in message" :key="thz.code">
+                                        <v-card hover>
+                                            <div style="padding-bottom:67%;position:relative;">
+                                                <img v-lazy="thz.imgf" style="position:absolute;width:100%;height:100%;left:0;top:0;">
+                                            </div>
+                                            <v-card-title primary-title>
+                                                <v-layout row wrap>
+                                                    <v-flex xs12 lg12 mb-3>
+                                                        <v-expansion-panel>
+                                                            <v-expansion-panel-content>
+                                                                <div style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;font-size:24px;" slot="header">{{thz.text}}</div>
+                                                                <v-card>
+                                                                    <v-list>
+                                                                        <v-list-tile v-for="pdatitem in thz.pdat" @click="">
+                                                                            <v-list-tile-content>
+                                                                                <v-list-tile-title style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;" v-text="pdatitem"></v-list-tile-title>
+                                                                            </v-list-tile-content>
+                                                                        </v-list-tile>
+                                                                    </v-list>
+                                                                </v-card>
+                                                            </v-expansion-panel-content>
+                                                        </v-expansion-panel>
+                                                    </v-flex>
+                                                    <div>
+                                                        <v-btn color="error" :href="thz.href" target="_blank">THZ</v-btn>
+                                                        <v-btn color="warning" :href="thz.jref" target="_blank">JAV</v-btn>
+                                                        <v-btn flat outline color="success" :href="thz.imgf" target="_blank">
+                                                            <v-icon left>photo</v-icon>
+                                                            {{thz.code}}
+                                                        </v-btn>
+                                                        <v-btn round color="success" text-color="white" style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;"
+                                                            v-on:click="searchIndex(thz.name)">
+                                                            <v-icon left>face</v-icon>
+                                                            {{thz.name}}
+                                                        </v-btn>
+                                                    </div>
+                                                </v-layout>
+                                            </v-card-title>
+                                            <v-card-actions>
+                                                <v-spacer></v-spacer>
+                                                <v-btn color="success" :href="thz.dlnk" target="_blank">Download</v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-card>
+                    </v-flex>
+
+                    <v-flex xs12 sm4>
+                        <v-card>
+                            <v-container fluid grid-list-md>
+                                <v-layout row wrap>
+                                    <v-flex>
+                                        <v-card hover ripple>
+                                            <v-card-title primary-title>
+                                                <v-text-field label="Search" prepend-icon="search" v-model="searchcontent" style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;"
+                                                    @keyup.enter="searchIndex(searchcontent)" />
+                                            </v-card-title>
+                                        </v-card>
+                                        <br>
+                                        <v-card hover ripple>
+                                            <v-card-title primary-title>
+                                                <div v-for="codetag in codetags" :key="codetag">
+                                                    <v-btn round color="warning" flat outline style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;"
+                                                        v-on:click="searchIndex(codetag)">
+                                                        {{codetag}}
+                                                    </v-btn>
+                                                </div>
+                                            </v-card-title>
+                                        </v-card>
+                                        <br>
+                                        <v-card hover ripple>
+                                            <v-card-title primary-title>
+                                                <div v-for="actorname in actornames" :key="actorname">
+                                                    <v-btn round color="success" flat outline style="font-family:'source-han-sans-japanese','source-han-sans-simplified-c',sans-serif;"
+                                                        v-on:click="searchIndex(actorname)">
+                                                        {{actorname}}
+                                                    </v-btn>
+                                                </div>
+                                            </v-card-title>
+                                        </v-card>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+
+            <div class="text-xs-center">
+                <v-pagination circle v-show="paginationShow" :length="pages" v-model="page" @input="next" :total-visible="9"></v-pagination>
+            </div>
+
+            <div class="text-xs-right">
+                <v-speed-dial fixed v-model="fab" bottom right open-on-hover transition="slide-y-reverse-transition">
+                    <v-btn slot="activator" v-model="fab" color="blue" dark fab>
+                        <v-icon>menu</v-icon>
+                        <v-icon>close</v-icon>
+                    </v-btn>
+                    <v-btn fab dark small color="indigo" href="https://www.alpacapapa.com/">
+                        <v-icon>home</v-icon>
+                    </v-btn>
+                    <v-btn fab dark small color="green" id="downdown" @click="toBottom">
+                        <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn fab dark small color="red" id="upup" v-show="!uphidden" @click="toTop">
+                        <v-icon>arrow_upward</v-icon>
+                    </v-btn>
+                </v-speed-dial>
+            </div>
+
+            <v-footer class="pa-3">
+                <v-layout row wrap justify-center>
+                    <div class="text-xs-center">&copy; {{ new Date().getFullYear() }}
+                        <strong>Golden Shark</strong>
+                    </div>
+                </v-layout>
+            </v-footer>
+
+        </v-app>
+    </div>
+    <script>
+        Vue.use(VueLazyload)
+        var thzapp = new Vue({
+            el: '#thzapp',
+            data: {
+                message: '',
+                actornames: '',
+                codetags: '',
+                searchcontent: '',
+                page: 1,
+                pages: 0,
+                paginationShow: true,
+                uphidden: true,
+                uphiddenOffset: 200,
+                enablescrollevent: true,
+                fab: false
+            },
+            mounted: function () {
+                this.getJsonInfo()
+            },
+            created: function () {
+                this.getTotalPages()
+            },
+            computed: {
+                target() {
+                    return 0
+                },
+                upoptions() {
+                    return {
+                        duration: 1000,
+                        offset: 0,
+                        easing: 'easeInOutCubic'
+                    }
+                },
+                downoptions() {
+                    return {
+                        duration: 1000,
+                        offset: 99999,
+                        easing: 'easeInOutCubic'
+                    }
+                }
+            },
+            methods: {
+                onScroll: function () {
+                    if (this.enablescrollevent) {
+                        if (window.pageYOffset < this.uphiddenOffset) this.uphidden = true;
+                        else this.uphidden = false;
+                    }
+                    if (window.pageYOffset < this.uphiddenOffset) this.enablescrollevent = true;
+                },
+                toTop: function () {
+                    this.enablescrollevent = false;
+                    this.uphidden = true;
+                    this.$vuetify.goTo(this.target, this.upoptions);
+                },
+                toBottom: function () {
+                    this.enablescrollevent = false;
+                    this.$vuetify.goTo(this.target, this.downoptions);
+                },
+                getJsonInfo: function () {
+                    axios.get('https://www.alpacapapa.com/thzdetails/1')
+                        .then(function (response) {
+                            this.message = response.data;
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    axios.get('https://www.alpacapapahub.com/docs/namelist')
+                        .then(function (response) {
+                            this.actornames = response.data.split('\n');
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    axios.get('https://www.alpacapapahub.com/docs/codetag')
+                        .then(function (response) {
+                            this.codetags = response.data.split('\n');
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                getTotalPages: function () {
+                    axios.get('https://www.alpacapapa.com/totalpages')
+                        .then(function (response) {
+                            this.pages = parseInt(response.data);
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                next(page) {
+                    const toast = swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    toast.fire({
+                        type: 'success',
+                        title: 'Loading'
+                    });
+                    axios.get('https://www.alpacapapa.com/thzdetails/' + page)
+                        .then(function (response) {
+                            console.log('Current page is ' + page);
+                            this.toTop();
+                            this.message = response.data;
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                searchIndex(acname) {
+                    const toast = swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 4000
+                    });
+                    toast.fire({
+                        type: 'success',
+                        title: 'Searching'
+                    });
+                    var client = algoliasearch('P7KK27HK91', 'fa8f8d512e4087d472e2c274173ceb19');
+                    var index = client.initIndex('thzalgolia');
+                    this.paginationShow = false;
+                    index.search({ query: acname, hitsPerPage: 500 },
+                        function searchDone(err, content) {
+                            if (err) throw err;
+                            console.log(content.hits);
+                            this.toTop();
+                            this.message = content.hits;
+                        }.bind(this));
+                }
+            }
+        })
+    </script>
+</body>
