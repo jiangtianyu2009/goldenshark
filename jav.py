@@ -3,9 +3,12 @@ import os
 import subprocess
 
 from flask import Flask, jsonify, request, send_from_directory
-# from scrapinghub import ScrapinghubClient
+from scrapinghub import ScrapinghubClient
 
 app = Flask(__name__, static_url_path='')
+
+API_KEY = '11befd9da9304fecb83dfa114d1926e9'
+PROJECT_ID = '252342'
 
 
 @app.route("/")
@@ -14,60 +17,36 @@ def index():
     return 'Hello, World!'
 
 
-# @app.route('/favicon.ico')
-# def favicon():
-#     return send_from_directory(os.path.join(app.root_path, 'static'),
-#                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico',
+                               mimetype='image/vnd.microsoft.icon')
 
 
-# @app.route('/thzdetails/<int:page_id>', methods=['GET'])
-# def getdetail(page_id):
-#     if request.method == 'GET':
-#         with open(r'/home/GoldenShark/codelist/' + str(page_id + 100) + r'.json', 'r') as thzfile:
-#             return corsresponse(json.load(thzfile))
+@app.route('/codelist', methods=['GET'])
+def fetchcodelist():
+    if request.method == 'GET':
+        client = ScrapinghubClient(API_KEY)
+        project = client.get_project(PROJECT_ID)
+
+        for job in list(project.jobs.iter_last(
+                spider='javdetail', state='finished')):
+            javjob = job
+
+        print(javjob['key'])
+        job = project.jobs.get(javjob['key'])
+
+        for item in job.items.iter(count=1):
+            output = item
+
+        return output
 
 
-# @app.route('/totalpages', methods=['GET'])
-# def gettotalpages():
-#     if request.method == 'GET':
-#         return corsresponse(len(os.listdir(r'/home/GoldenShark/codelist/')) - 1)
-
-
-# @app.route('/updatecode', methods=['POST'])
-# def performupdatecode():
-#     if request.method == 'POST':
-#         output = subprocess.check_output(
-#             ['git', '-C', r'/home/GoldenShark/', 'pull', '-v'])
-#         return output
-
-
-# @app.route('/codelist', methods=['GET'])
-# def fetchcodelist():
-#     if request.method == 'GET':
-#         output = subprocess.check_output(
-#             ['python3', '/home/GoldenShark/codelist.py'],
-#             stderr=subprocess.STDOUT)
-#         return output
-
-
-# @app.route('/algoliaupdate', methods=['GET'])
-# def updatealgolia():
-#     if request.method == 'GET':
-#         subprocess.Popen(
-#             ['python3', '/home/GoldenShark/algoliaupdate.py'])
-#         return 'Execute Algolia Update.'
-
-
-# @app.route('/pushimage', methods=['GET'])
-# def gitpushimages():
-#     if request.method == 'GET':
-#         output = subprocess.check_output(['/home/GoldenShark/gitpush.sh'])
-#         return output
-
-
-# def corsresponse(origres):
-#     corsres = jsonify(origres)
-#     corsres.headers['Access-Control-Allow-Origin'] = '*'
-#     corsres.headers['Access-Control-Allow-Methods'] = 'GET, POST'
-#     corsres.headers['Access-Control-Allow-Headers'] = 'x-requested-with, content-type'
-#     return corsres
+def corsresponse(origres):
+    corsres = jsonify(origres)
+    corsres.headers['Access-Control-Allow-Origin'] = '*'
+    corsres.headers['Access-Control-Allow-Methods'] = 'GET, POST'
+    corsres.headers['Access-Control-Allow-Headers'] = 'x-requested-with,\
+        content-type'
+    return corsres
