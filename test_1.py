@@ -11,21 +11,21 @@ PROJECT_ID = '252342'
 
 
 def fetchcodelist():
-    client = ScrapinghubClient(API_KEY)
+    client = ScrapinghubClient(API_KEY, use_msgpack=False)
     project = client.get_project(PROJECT_ID)
 
-    for job in list(project.jobs.iter_last(
-            spider='javdetail', state='finished')):
-        javjob = job
+    for jav_order_job in list(project.jobs.iter_last(
+            spider='javorder', state='finished')):
+        javjob = jav_order_job
 
     print(javjob['key'])
-    job = project.jobs.get(javjob['key'])
+    jav_order_job = project.jobs.get(javjob['key'])
 
     output = []
-    for i, item in enumerate(job.items.iter()):
-        output.append({'code': item['code'], 'date': item['date']})
-    output.sort(key=lambda x: x['date'], reverse=True)
-    print(output[0:100])
+    for item in jav_order_job.items.iter(count=10):
+        output.append(item)
+
+    print(output)
 
     return output
 
