@@ -30,14 +30,14 @@ def fetchcodelist():
         client = ScrapinghubClient(API_KEY)
         project = client.get_project(PROJECT_ID)
 
-        for job in list(project.jobs.iter_last(
-                spider='javdetail', state='finished')):
-            javjob = job
+        for jav_order_job in list(project.jobs.iter_last(
+                spider='javorder', state='finished')):
+            javjob = jav_order_job
 
         print(javjob['key'])
-        job = project.jobs.get(javjob['key'])
+        jav_order_job = project.jobs.get(javjob['key'])
 
-        for item in job.items.iter(count=1):
+        for item in jav_order_job.items.iter(count=1):
             output = item
 
         return output
