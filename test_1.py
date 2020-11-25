@@ -22,10 +22,14 @@ def fetchcodelist():
     jav_order_job = project.jobs.get(javjob['key'])
 
     output = []
-    for item in jav_order_job.items.iter(count=10):
+    for item in jav_order_job.items.list_iter(start=5, count=3):
         output.append(item)
 
-    print(output)
+    filters = [("name", "=", ['楓カレン'])]
+    for item in jav_order_job.items.iter(count=10, filter=filters):
+        print(item)
+
+    # print(output)
 
     return output
 
