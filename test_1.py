@@ -2,10 +2,12 @@ import json
 import os
 import subprocess
 
+import requests
 from flask import Flask, jsonify, request, send_from_directory
 from scrapinghub import ScrapinghubClient
 
-
+NAME_LIST_URL = ('https://raw.githubusercontent.com/bsonnier/'
+                 'bsonnier.github.io/master/docs/namelist')
 API_KEY = '11befd9da9304fecb83dfa114d1926e9'
 PROJECT_ID = '252342'
 
@@ -29,7 +31,8 @@ def fetchcodelist():
     for item in jav_order_job.items.iter(count=10, filter=filters):
         print(item)
 
-    # print(output)
+    namelist = requests.get(NAME_LIST_URL).text.split()
+    print(namelist)
 
     return output
 
