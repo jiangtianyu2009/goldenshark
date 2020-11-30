@@ -57,4 +57,4 @@ def list_pagination():
         for i, out in enumerate(output):
             outdict[i] = out
 
-        return outdict
+        return corsresponse(outdict)
