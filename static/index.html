@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -11,22 +12,28 @@
 <body>
     <div id="app">
         <v-app id="inspire">
-            <v-card class="mx-auto">
-                <v-img class="white--text align-end" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
-                </v-img>
 
-                <v-card-subtitle>
-                    <v-btn color="green" text>
-                        subtitle
-                    </v-btn>
-                </v-card-subtitle>
+            <v-container fluid>
+                <v-row dense>
+                    <v-col v-for="card in cards" :key="card.code" :cols="12">
+                        <v-card class="mx-auto" max-width="300">
+                            <v-img :src="card.imgl" class="white--text align-end">
+                            </v-img>
 
-                <v-card-text>
-                    <v-btn color="black" text>
-                        text
-                    </v-btn>
-                </v-card-text>
-            </v-card>
+                            <v-card-subtitle>
+                                <v-btn color="green" text v-text="card.code">
+                                </v-btn>
+                            </v-card-subtitle>
+
+                            <v-card-text>
+                                <v-btn color="black" text>
+                                    text
+                                </v-btn>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-container>
         </v-app>
     </div>
 
@@ -36,6 +43,23 @@
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
+            data: () => ({
+                cards: '',
+            }),
+            mounted: function () {
+                this.getCardsInfo()
+            },
+            methods: {
+                getCardsInfo: function () {
+                    axios.get('http://www.404909.xyz/list')
+                        .then(function (response) {
+                            this.cards = response.data;
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+            },
         })
     </script>
 </body>
