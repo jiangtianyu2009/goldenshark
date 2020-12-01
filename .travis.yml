@@ -7,8 +7,6 @@ install:
 # command to run tests
 script:
   - python your-daemon-or-script.py
-#   - curl https://www.alpacapapa.com/codelist
-#   - curl https://www.alpacapapa.com/pushimage
 jobs:
   include:
     - stage: test
