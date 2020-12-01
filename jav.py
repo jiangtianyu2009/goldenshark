@@ -31,8 +31,12 @@ def favicon():
 
 @app.route("/")
 def index():
-    # return app.send_static_file('index.html')
     return 'Hello, World!'
+
+
+@app.route("/goldenshark")
+def goldenshark():
+    return app.send_static_file('index.html')
 
 
 @app.route('/list', methods=['GET'])
