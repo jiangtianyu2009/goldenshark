@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>404909</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
@@ -16,7 +17,7 @@
         <v-app id="inspire">
 
             <v-container fluid>
-                <v-row dense>
+                <v-row>
                     <v-col v-for="card in cards" :key="card.key" :cols="12">
                         <v-card class="mx-auto" max-width="500">
                             <v-img :src="card.imgl" class="white--text align-end"></v-img>
@@ -47,11 +48,13 @@
 
     <script>
         const BASE_URL = "http://www.404909.xyz"
+        const NAME_LIST_URL = "https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/namelist"
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
             data: () => ({
                 cards: '',
+                actornames: '',
                 page: 1,
             }),
             mounted: function () {
@@ -74,6 +77,13 @@
                     axios.get(BASE_URL + '/list')
                         .then(function (response) {
                             this.cards = response.data;
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    axios.get(NAME_LIST_URL)
+                        .then(function (response) {
+                            this.actornames = response.data.split(/[\s\n]/);
                         }.bind(this))
                         .catch(function (error) {
                             console.log(error);
