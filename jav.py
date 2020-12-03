@@ -9,7 +9,7 @@ app = Flask(__name__, static_url_path='')
 
 API_KEY = '11befd9da9304fecb83dfa114d1926e9'
 PROJECT_ID = '252342'
-PAGINATION = 10
+PAGINATION = 20
 BASE_PAGE = 1
 
 
