@@ -27,9 +27,9 @@
                                     <v-card-subtitle v-text="card.date"></v-card-subtitle>
 
                                     <v-card-actions>
-                                        <v-btn text color="green" v-text="card.code" :href="card.link" target="_blank">
+                                        <v-btn text color="orange" v-text="card.code" :href="card.link" target="_blank">
                                         </v-btn>
-                                        <v-btn text color="orange" v-text="card.name" @click="search_name(card.name)">
+                                        <v-btn text color="green" v-text="card.name" @click="search_name(card.name)">
                                         </v-btn>
                                         <v-btn text color="lime" v-text="card.makr" @click="search_makr(card.makr)">
                                         </v-btn>
@@ -43,11 +43,19 @@
 
                         <v-col cols="6" md="4">
                             <v-text-field solo label="Search" v-model="searchcontent"
-                                @keyup.enter="search_word(searchcontent)"></v-text-field>
+                                @keyup.enter="search_word(searchcontent)">
+                            </v-text-field>
                             <v-card>
                                 <v-card-text>
-                                    <v-chip v-for="acname in actornames" v-text="acname" color="green"
+                                    <v-chip v-for="acname in actornames" :key="acname" v-text="acname" color="green"
                                         @click="search_name(acname)" outlined>
+                                    </v-chip>
+                                </v-card-text>
+                            </v-card>
+                            <v-card>
+                                <v-card-text>
+                                    <v-chip v-for="mkname in makernames" :key="mkname" v-text="mkname" color="orange"
+                                        @click="search_makr(mkname)" outlined>
                                     </v-chip>
                                 </v-card-text>
                             </v-card>
@@ -66,6 +74,7 @@
     <script>
         const BASE_URL = "http://www.404909.xyz"
         const NAME_LIST_URL = "https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/namelist"
+        const MAKR_LIST_URL = "https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/makrlist"
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -73,6 +82,7 @@
                 page: 1,
                 cards: '',
                 actornames: '',
+                makernames: '',
                 searchcontent: '',
             }),
             mounted: function () {
@@ -103,6 +113,14 @@
                         .then(function (response) {
                             this.actornames = response.data.split(/[\n]/).sort();
                             this.actornames.shift();
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    axios.get(MAKR_LIST_URL)
+                        .then(function (response) {
+                            this.makernames = response.data.split(/[\n]/).sort();
+                            this.makernames.shift();
                         }.bind(this))
                         .catch(function (error) {
                             console.log(error);
