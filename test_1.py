@@ -24,12 +24,15 @@ def fetchcodelist():
     jav_order_job = project.jobs.get(javjob['key'])
 
     output = []
-    for item in jav_order_job.items.list_iter(start=5, count=3):
-        output.append(item)
 
-    filters = [("name", "=", ['楓カレン'])]
-    for item in jav_order_job.items.iter(count=10, filter=filters):
-        print(item)
+    search_word = "JUL"
+    filters = [("code", "contains", [search_word]),
+               ("text", "contains", [search_word])]
+    for f_ter in filters:
+        for item in jav_order_job.items.iter(filter=[f_ter]):
+            output.append(item)
+
+    print(output)
 
     namelist = requests.get(NAME_LIST_URL).text.split()
     print(namelist)
