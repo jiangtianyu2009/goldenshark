@@ -80,14 +80,20 @@ def list_search():
 
         # Get para from URL like '/search?name=XX'
         # Get para from URL like '/search?makr=XX'
+        # Get para from URL like '/search?word=XX'
         if request.args.get("name"):
             search_name = request.args.get("name")
             filters = [("name", "=", [search_name])]
         if request.args.get("makr"):
             search_makr = request.args.get("makr")
             filters = [("makr", "=", [search_makr])]
-        for item in jav_order_job.items.iter(filter=filters):
-            output.append(item)
+        if request.args.get("word"):
+            search_word = request.args.get("word")
+            filters = [("code", "contains", [search_word]),
+                       ("text", "contains", [search_word])]
+        for f_ter in filters:
+            for item in jav_order_job.items.iter(filter=[f_ter]):
+                output.append(item)
         for i, out in enumerate(output):
             outdict[i] = out
 
