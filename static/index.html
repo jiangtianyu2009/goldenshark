@@ -4,7 +4,7 @@
 <head>
     <title>404909</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -158,7 +158,7 @@
                 },
                 search_word: function (word) {
                     this.$vuetify.goTo(this.target, this.options);
-                    axios.get(BASE_URL + '/search?word=' + encodeURIComponent(word))
+                    axios.get(BASE_URL + '/search?word=' + encodeURIComponent(word.toUpperCase()))
                         .then(function (response) {
                             this.cards = response.data;
                         }.bind(this))
