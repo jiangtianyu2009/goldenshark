@@ -36,7 +36,7 @@ def index():
 
 @app.route("/goldenshark")
 def goldenshark():
-    return app.send_static_file('index.html')
+    return app.send_static_file('goldenshark.html')
 
 
 @app.route('/list', methods=['GET'])
