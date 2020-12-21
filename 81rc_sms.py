@@ -1,11 +1,12 @@
 import time
+from datetime import datetime
+from threading import Timer
 
 import bs4
 import requests
-import schedule
 from ronglian_sms_sdk import SmsSDK
 
-RC81_URL = 'http://81rc.81.cn/'
+RC81_URL = 'http://81rc.81.cn'
 RC81_URL_TEST = 'https://www.jiangtianyu.xyz/rc81_test'
 LATEST_LIST = []
 
@@ -23,10 +24,10 @@ def send_message(msg):
     print(resp)
 
 
-def schedule_job():
+def timedTask():
     global LATEST_LIST
     detail_list = []
-    search_response = requests.get(RC81_URL)
+    search_response = requests.get(RC81_URL_TEST)
     search_response.encoding = 'utf-8'
     search_soup = bs4.BeautifulSoup(
         search_response.text, "html.parser")
@@ -44,9 +45,8 @@ def schedule_job():
         else:
             LATEST_LIST.append(item)
             send_message(item)
+    Timer(60, timedTask, ()).start()
 
 
-if __name__ == "__main__":
-    schedule.every(5).minutes.do(schedule_job)
-    while True:
-        schedule.run_pending()
+if __name__ == '__main__':
+    timedTask()
