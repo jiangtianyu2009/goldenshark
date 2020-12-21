@@ -27,7 +27,7 @@ def send_message(msg):
 def timedTask():
     global LATEST_LIST
     detail_list = []
-    search_response = requests.get(RC81_URL_TEST)
+    search_response = requests.get(RC81_URL)
     search_response.encoding = 'utf-8'
     search_soup = bs4.BeautifulSoup(
         search_response.text, "html.parser")
@@ -45,7 +45,7 @@ def timedTask():
         else:
             LATEST_LIST.append(item)
             send_message(item)
-    Timer(60, timedTask, ()).start()
+    Timer(300, timedTask, ()).start()
 
 
 if __name__ == '__main__':
