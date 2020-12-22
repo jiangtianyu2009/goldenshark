@@ -9,7 +9,6 @@ from ronglian_sms_sdk import SmsSDK
 RC81_URL = 'http://81rc.81.cn'
 RC81_URL_TEST = 'https://www.jiangtianyu.xyz/rc81_test'
 LATEST_LIST = []
-rc_timer = None
 
 accId = '8aaf0708762cb1cf0176749bb8751cb2'
 accToken = 'f75940aefc62439cb425555663070262'
@@ -29,26 +28,35 @@ def timed_task():
     global rc_timer
     global LATEST_LIST
     detail_list = []
-    search_response = requests.get(RC81_URL)
-    search_response.encoding = 'utf-8'
-    search_soup = bs4.BeautifulSoup(
-        search_response.text, "html.parser")
-    tmp_content = search_soup.find('div', {'class': "left-gzdt"})
-    detail_content = tmp_content.ul.find_all('a')
-    for item in detail_content:
-        detail_list.append(item.text)
-    print(detail_list)
-    if len(LATEST_LIST) == 0:
-        LATEST_LIST = detail_list
-    print(LATEST_LIST)
-    for item in detail_list:
-        if item in LATEST_LIST:
-            pass
-        else:
-            LATEST_LIST.append(item)
-            send_message(item)
-    rc_timer = Timer(10, timed_task)
-    rc_timer.start()
+
+    try:
+        search_response = requests.get(RC81_URL)
+        search_response.encoding = 'utf-8'
+        search_soup = bs4.BeautifulSoup(
+            search_response.text, "html.parser")
+        tmp_content = search_soup.find('div', {'class': "left-gzdt"})
+        detail_content = tmp_content.ul.find_all('a')
+        for item in detail_content:
+            detail_list.append(item.text)
+        print(detail_list)
+        if len(LATEST_LIST) == 0:
+            LATEST_LIST = detail_list
+        print(LATEST_LIST)
+        for item in detail_list:
+            if item in LATEST_LIST:
+                pass
+            else:
+                LATEST_LIST.append(item)
+                send_message(item)
+    except exceptions.Timeout as e:
+        print('Timeout:' + str(e.message))
+    except exceptions.HTTPError as e:
+        print('HTTPError:' + str(e.message))
+    except Exception as e:
+        print('Others:' + str(e.message))
+    finally:
+        rc_timer = Timer(300, timed_task)
+        rc_timer.start()
 
 
 if __name__ == '__main__':
