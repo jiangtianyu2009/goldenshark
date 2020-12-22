@@ -24,7 +24,8 @@ def send_message(msg):
     print(resp)
 
 
-def timedTask():
+def timed_task():
+    global timer
     global LATEST_LIST
     detail_list = []
     search_response = requests.get(RC81_URL)
@@ -45,8 +46,10 @@ def timedTask():
         else:
             LATEST_LIST.append(item)
             send_message(item)
-    Timer(300, timedTask, ()).start()
+    timer = Timer(300, timed_task)
+    timer.start()
 
 
 if __name__ == '__main__':
-    timedTask()
+    timer = Timer(300, timed_task)
+    timer.start()
