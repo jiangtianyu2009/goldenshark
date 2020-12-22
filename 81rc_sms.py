@@ -9,6 +9,7 @@ from ronglian_sms_sdk import SmsSDK
 RC81_URL = 'http://81rc.81.cn'
 RC81_URL_TEST = 'https://www.jiangtianyu.xyz/rc81_test'
 LATEST_LIST = []
+rc_timer = None
 
 accId = '8aaf0708762cb1cf0176749bb8751cb2'
 accToken = 'f75940aefc62439cb425555663070262'
@@ -25,7 +26,7 @@ def send_message(msg):
 
 
 def timed_task():
-    global timer
+    global rc_timer
     global LATEST_LIST
     detail_list = []
     search_response = requests.get(RC81_URL)
@@ -46,10 +47,9 @@ def timed_task():
         else:
             LATEST_LIST.append(item)
             send_message(item)
-    timer = Timer(300, timed_task)
-    timer.start()
+    rc_timer = Timer(10, timed_task)
+    rc_timer.start()
 
 
 if __name__ == '__main__':
-    timer = Timer(300, timed_task)
-    timer.start()
+    timed_task()
