@@ -48,12 +48,8 @@ def timed_task():
             else:
                 LATEST_LIST.append(item)
                 send_message(item)
-    except exceptions.Timeout as e:
-        print('Timeout:' + str(e.message))
-    except exceptions.HTTPError as e:
-        print('HTTPError:' + str(e.message))
     except Exception as e:
-        print('Others:' + str(e.message))
+        print('Error: ' + str(e))
     finally:
         rc_timer = Timer(300, timed_task)
         rc_timer.start()
