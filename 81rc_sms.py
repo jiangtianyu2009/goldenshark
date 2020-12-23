@@ -30,6 +30,7 @@ def timed_task():
     detail_list = []
 
     try:
+        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         search_response = requests.get(RC81_URL)
         search_response.encoding = 'utf-8'
         search_soup = bs4.BeautifulSoup(
