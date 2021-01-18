@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT ["gunicorn", "--config", "/src/gunicorn.conf.py", "jav:app"]
+ENTRYPOINT ["python3", "81rc_sms.py"]
