@@ -3,10 +3,10 @@
 
 <head>
     <title>404909</title>
-    <script src="assets/js/axios.min.js"></script>
-    <script src="assets/js/vue.min.js"></script>
-    <script src="assets/js/vuetify.js"></script>
-    <link href="assets/css/vuetify.min.css" rel="stylesheet">
+    <script src="../assets/js/axios.min.js"></script>
+    <script src="../assets/js/vue.min.js"></script>
+    <script src="../assets/js/vuetify.js"></script>
+    <link href="../assets/css/vuetify.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -17,6 +17,24 @@
                 <v-container>
                     <v-row>
                         <v-col cols="12" md="8">
+                            <v-simple-table>
+                                <template v-slot:default>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left">
+                                                Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="card in cards" :key="card.key">
+                                            <td>{{ card.name }}</td>
+                                        </tr>
+                                    </tbody>
+                                </template>
+                            </v-simple-table>
+
+                            <!--
                             <v-col v-for="card in cards" :key="card.key">
                                 <v-card max-width="500">
                                     <v-img :src="card.imgl" class="white--text align-end"></v-img>
@@ -37,12 +55,16 @@
                                     </v-card-actions>
                                 </v-card>
                             </v-col>
+                            -->
+
                         </v-col>
 
                         <v-col cols="6" md="4">
                             <v-text-field solo label="Search" v-model="searchcontent"
                                 @keyup.enter="search_word(searchcontent)">
                             </v-text-field>
+
+                            <!--
                             <v-card>
                                 <v-card-text>
                                     <v-chip v-for="acname in actornames" :key="acname" v-text="acname" color="green"
@@ -57,20 +79,22 @@
                                     </v-chip>
                                 </v-card-text>
                             </v-card>
+                            -->
                         </v-col>
                     </v-row>
                 </v-container>
             </div>
 
+            <!--
             <div class="text-center">
                 <v-pagination v-model="page" :length="99" @input="next_page" :total-visible="9"></v-pagination>
             </div>
-
+            -->
         </v-app>
     </div>
 
     <script>
-        const BASE_URL = "http://www.404909.xyz"
+        const BASE_URL = "http://127.0.0.1:5000"
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -97,7 +121,6 @@
                 },
             },
             methods: {
-                /*
                 get_cards_info: function () {
                     axios.get(BASE_URL + '/list')
                         .then(function (response) {
@@ -107,6 +130,7 @@
                             console.log(error);
                         });
                 },
+                /*
                 next_page: function (page) {
                     this.$vuetify.goTo(this.target, this.options);
                     axios.get(BASE_URL + '/list?page=' + page)
