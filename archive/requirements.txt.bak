@@ -5,3 +5,4 @@ gunicorn
 flask
 scrapinghub
 beautifulsoup4
+ronglian_sms_sdk
