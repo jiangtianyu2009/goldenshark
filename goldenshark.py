@@ -43,12 +43,26 @@ def goldenshark():
     return app.send_static_file('goldenshark.html')
 
 
+@app.route('/list', methods=['GET'])
+def list_all():
+    if request.method == 'GET':
+        output = []
+        outdict = {}
+        for mock_item in mock_data:
+            output.append({"name": mock_item})
+        for i, out in enumerate(output):
+            outdict[i] = out
+
+        print(outdict)
+        # Return CORS response
+        return cors_response(outdict)
+
+
 @app.route('/search', methods=['GET'])
 def list_search():
     if request.method == 'GET':
         output = []
         outdict = {}
-
         # Get para from URL like '/search?name=XX'
         # Get para from URL like '/search?makr=XX'
         # Get para from URL like '/search?word=XX'
@@ -62,9 +76,10 @@ def list_search():
             search_word = request.args.get("word")
             for mock_item in mock_data:
                 if search_word in mock_item:
-                    output.append(mock_item)
+                    output.append({"name": mock_item})
         for i, out in enumerate(output):
             outdict[i] = out
 
+        print(outdict)
         # Return CORS response
         return cors_response(outdict)
