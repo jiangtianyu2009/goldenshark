@@ -17,22 +17,96 @@
                 <v-container>
                     <v-row>
                         <v-col cols="12" md="8">
-                            <v-simple-table>
-                                <template v-slot:default>
-                                    <thead>
-                                        <tr>
-                                            <th class="text-left">
-                                                Name
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="card in cards" :key="card.key">
-                                            <td>{{ card.name }}</td>
-                                        </tr>
-                                    </tbody>
-                                </template>
-                            </v-simple-table>
+                            <v-card class="mx-auto" color="green lighten-2">
+                                <v-card-title>
+                                    已安排
+                                    <v-spacer></v-spacer>
+                                </v-card-title>
+                                <v-simple-table>
+                                    <template v-slot:default>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">
+                                                    课题名称
+                                                </th>
+                                                <th class="text-left">
+                                                    姓名
+                                                </th>
+                                                <th class="text-left">
+                                                    单位
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="card in cards" :key="card.key" v-if="card.stage == 1">
+                                                <td>{{ card.title }}</td>
+                                                <td>{{ card.name }}</td>
+                                                <td>{{ card.department }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </template>
+                                </v-simple-table>
+                            </v-card>
+                            <v-card class="mx-auto" color="teal accent-4">
+                                <v-card-title>
+                                    项目池
+                                    <v-spacer></v-spacer>
+                                </v-card-title>
+                                <v-simple-table>
+                                    <template v-slot:default>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">
+                                                    课题名称
+                                                </th>
+                                                <th class="text-left">
+                                                    姓名
+                                                </th>
+                                                <th class="text-left">
+                                                    单位
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="card in cards" :key="card.key" v-if="card.stage == 2">
+                                                <td>{{ card.title }}</td>
+                                                <td>{{ card.name }}</td>
+                                                <td>{{ card.department }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </template>
+                                </v-simple-table>
+                            </v-card>
+                            <v-card class="mx-auto" color="orange lighten-2">
+                                <v-card-title>
+                                    回收站
+                                    <v-spacer></v-spacer>
+                                </v-card-title>
+                                <v-simple-table>
+                                    <template v-slot:default>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">
+                                                    课题名称
+                                                </th>
+                                                <th class="text-left">
+                                                    姓名
+                                                </th>
+                                                <th class="text-left">
+                                                    单位
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="card in cards" :key="card.key" v-if="card.stage == 3">
+                                                <td>{{ card.title }}</td>
+                                                <td>{{ card.name }}</td>
+                                                <td>{{ card.department }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </template>
+                                </v-simple-table>
+                            </v-card>
 
                             <!--
                             <v-col v-for="card in cards" :key="card.key">
