@@ -1,6 +1,7 @@
 import json
 import os
 import subprocess
+import csv
 
 from flask import Flask, jsonify, request, send_from_directory
 
@@ -10,11 +11,7 @@ app = Flask(__name__, static_url_path='')
 PAGINATION = 20
 BASE_PAGE = 1
 
-mock_data = ["视觉显著性导向的图像压缩感知测量与重建,李艳灵",
-             "图像分块压缩感知中的自适应测量率设定方法,武明虎",
-             "联合时空特征的视频分块压缩感知重构,崔子冠",
-             "基于PCA硬阈值收缩的平滑投影Landweber图像压缩感知重构,朱秀昌",
-             "无线传感器网络中基于压缩感知的静止图像压缩方案研究,郑海波"]
+mock_data = []
 
 
 def cors_response(orig_res):
@@ -45,15 +42,18 @@ def goldenshark():
 
 @app.route('/list', methods=['GET'])
 def list_all():
+    global mock_data
     if request.method == 'GET':
         output = []
         outdict = {}
         for mock_item in mock_data:
-            output.append({"name": mock_item})
+            output.append({"title": mock_item["title"],
+                           "name": mock_item["name"],
+                           "department": mock_item["department"],
+                           "stage": mock_item["stage"]})
         for i, out in enumerate(output):
             outdict[i] = out
 
-        print(outdict)
         # Return CORS response
         return cors_response(outdict)
 
@@ -75,11 +75,34 @@ def list_search():
         if request.args.get("word"):
             search_word = request.args.get("word")
             for mock_item in mock_data:
-                if search_word in mock_item:
-                    output.append({"name": mock_item})
+                is_hit = 0
+                if search_word in mock_item["title"]:
+                    is_hit = 1
+                if search_word in mock_item["name"]:
+                    is_hit = 1
+                if search_word in mock_item["department"]:
+                    is_hit = 1
+                if is_hit:
+                    output.append({"title": mock_item["title"],
+                                   "name": mock_item["name"],
+                                   "department": mock_item["department"],
+                                   "stage": mock_item["stage"]})
         for i, out in enumerate(output):
             outdict[i] = out
 
         print(outdict)
         # Return CORS response
         return cors_response(outdict)
+
+
+def import_data():
+    global mock_data
+    with open('data.csv', encoding='utf-8-sig') as csvfile:
+        cr = csv.DictReader(csvfile)
+        for row in cr:
+            mock_data.append(row)
+
+
+if __name__ == '__main__':
+    import_data()
+    app.run(debug=True)
